@@ -1,0 +1,25 @@
+resources:
+  pipelines:
+    ${var.pipeline_name}:
+      name: ${var.pipeline_name}
+      target: "${var.base_catalog}"
+      serverless: true
+      configuration:
+        pip.packages: "databricks-sql-connector==3.1.0"
+        spark.sql.shuffle.partitions: "200"
+        spark.databricks.delta.optimizeWrite.enabled: "true"
+        spark.databricks.delta.autoCompact.enabled: "true"
+      clusters:
+        - label: "default"
+          node_type_id: "Standard_DS3_v2"
+          autoscale:
+            min_workers: 1
+            max_workers: 4
+          spark_version: "15.4.x-scala2.12"
+      development: true
+      continuous: false
+      channel: "CURRENT"
+      photon: true
+      libraries:
+        - notebook:
+            path: "../src/pipelines/medallion_pipeline.sql"

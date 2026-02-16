@@ -1,0 +1,27 @@
+# Lakeflow Pipeline Requirements
+# Core dependencies for data processing and testing
+
+# Databricks
+databricks-cli>=0.218.0
+databricks-sql-connector>=3.1.0
+
+# PySpark
+pyspark>=3.4.0
+
+# Data Processing
+pandas>=1.5.0
+numpy>=1.24.0
+
+# Testing
+pytest>=7.0.0
+pytest-cov>=4.0.0
+pytest-mock>=3.10.0
+
+# Utilities
+python-dateutil>=2.8.0
+pytz>=2023.3
+
+# Development (optional)
+black>=23.0.0
+flake8>=6.0.0
+mypy>=1.0.0

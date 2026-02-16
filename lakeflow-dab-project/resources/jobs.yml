@@ -1,0 +1,40 @@
+resources:
+  jobs:
+    pipeline_refresh_job:
+      name: "${var.pipeline_name}_refresh"
+      schedule:
+        quartz_cron_expression: "0 30 2 * * ?"
+        timezone_id: "UTC"
+      tasks:
+        - task_key: "refresh_pipeline"
+          pipeline_task:
+            pipeline_id: ${resources.pipelines.${var.pipeline_name}.id}
+      max_concurrent_runs: 1
+    
+    data_quality_validation:
+      name: "${var.pipeline_name}_validation"
+      tasks:
+        - task_key: "validate_bronze"
+          notebook_task:
+            notebook_path: "../src/validation/validate_bronze_data.py"
+          base_parameters:
+            catalog: "${var.base_catalog}"
+            schema: "${var.bronze_schema}"
+        
+        - task_key: "validate_silver"
+          notebook_task:
+            notebook_path: "../src/validation/validate_silver_data.py"
+          base_parameters:
+            catalog: "${var.base_catalog}"
+            schema: "${var.silver_schema}"
+          depends_on:
+            - task_key: "validate_bronze"
+        
+        - task_key: "validate_gold"
+          notebook_task:
+            notebook_path: "../src/validation/validate_gold_data.py"
+          base_parameters:
+            catalog: "${var.base_catalog}"
+            schema: "${var.gold_schema}"
+          depends_on:
+            - task_key: "validate_silver"

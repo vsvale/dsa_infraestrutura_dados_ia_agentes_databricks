@@ -1,0 +1,53 @@
+bundle:
+  name: lakeflow-data-pipeline
+
+include:
+  - resources/pipelines.yml
+  - resources/jobs.yml
+  - resources/permissions.yml
+
+variables:
+  base_catalog: "main"
+  bronze_schema: "bronze"
+  silver_schema: "silver"
+  gold_schema: "gold"
+  pipeline_name: "lakeflow_medallion_pipeline"
+
+targets:
+  dev:
+    default: true
+    mode: development
+    workspace:
+      host: https://your-dev-workspace.cloud.databricks.com
+    variables:
+      base_catalog: "dev_catalog"
+      pipeline_name: "lakeflow_medallion_pipeline_dev"
+
+  staging:
+    mode: production
+    workspace:
+      host: https://your-staging-workspace.cloud.databricks.com
+    run_as:
+      service_principal_name: "your-staging-spn"
+    variables:
+      base_catalog: "staging_catalog"
+      pipeline_name: "lakeflow_medallion_pipeline_staging"
+
+  prod:
+    mode: production
+    workspace:
+      host: https://your-prod-workspace.cloud.databricks.com
+    run_as:
+      service_principal_name: "your-prod-spn"
+    variables:
+      base_catalog: "prod_catalog"
+      pipeline_name: "lakeflow_medallion_pipeline_prod"
+
+sync:
+  exclude:
+    - ".git/"
+    - "tests/"
+    - "docs/"
+    - "*.md"
+    - "__pycache__/"
+    - ".pytest_cache/"

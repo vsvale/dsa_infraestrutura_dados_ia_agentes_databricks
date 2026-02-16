@@ -1,0 +1,23 @@
+resources:
+  permissions:
+    # Pipeline permissions
+    - permission_level: "CAN_MANAGE"
+      principal_name: "data-engineers"
+      resource_id: ${resources.pipelines.${var.pipeline_name}.id}
+    
+    - permission_level: "CAN_VIEW"
+      principal_name: "data-analysts"
+      resource_id: ${resources.pipelines.${var.pipeline_name}.id}
+    
+    # Job permissions
+    - permission_level: "CAN_MANAGE"
+      principal_name: "data-engineers"
+      resource_id: ${resources.jobs.pipeline_refresh_job.id}
+    
+    - permission_level: "CAN_MANAGE"
+      principal_name: "data-engineers"
+      resource_id: ${resources.jobs.data_quality_validation.id}
+    
+    - permission_level: "CAN_VIEW"
+      principal_name: "data-analysts"
+      resource_id: ${resources.jobs.data_quality_validation.id}
