@@ -1,0 +1,18 @@
+resources:
+  catalogs:
+    my_catalog:
+      name: my_catalog
+      comment: 'Catalog created by Databricks Asset Bundles'
+      properties:
+        purpose: 'Testing'
+      grants:
+        - principal: someone@example.com
+          privileges:
+            - USE_CATALOG
+            - CREATE_SCHEMA
+
+  schemas:
+    my_schema:
+      name: my_schema
+      catalog_name: ${resources.catalogs.my_catalog.name}
+      comment: 'Schema in custom catalog'

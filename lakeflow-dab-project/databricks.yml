@@ -1,42 +1,30 @@
 bundle:
-  name: lakeflow-data-pipeline
+  name: dsa-pipeline-bundle
 
 include:
-  - resources/pipelines.yml
-  - resources/jobs.yml
-  - resources/permissions.yml
+  - resources/catalogs.yml
 
 variables:
   base_catalog: "main"
   bronze_schema: "bronze"
   silver_schema: "silver"
   gold_schema: "gold"
-  pipeline_name: "lakeflow_medallion_pipeline"
+  pipeline_name: "dsa_pipeline"
 
 targets:
   dev:
     default: true
     mode: development
     workspace:
-      host: https://your-dev-workspace.cloud.databricks.com
+      host: https://dbc-285062b2-ce3e.cloud.databricks.com/
     variables:
       base_catalog: "dev_catalog"
-      pipeline_name: "lakeflow_medallion_pipeline_dev"
-
-  staging:
-    mode: production
-    workspace:
-      host: https://your-staging-workspace.cloud.databricks.com
-    run_as:
-      service_principal_name: "your-staging-spn"
-    variables:
-      base_catalog: "staging_catalog"
-      pipeline_name: "lakeflow_medallion_pipeline_staging"
+      pipeline_name: ${var.pipeline_name}_dev
 
   prod:
     mode: production
     workspace:
-      host: https://your-prod-workspace.cloud.databricks.com
+      host: https://dbc-285062b2-ce3e.cloud.databricks.com/
     run_as:
       service_principal_name: "your-prod-spn"
     variables:
