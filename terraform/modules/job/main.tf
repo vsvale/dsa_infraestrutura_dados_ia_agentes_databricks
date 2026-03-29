@@ -1,11 +1,18 @@
 resource "databricks_job" "this" {
   name = var.job_name
   
+  git_source {
+    url      = "https://github.com/vsvale/dsa_infraestrutura_dados_ia_agentes_databricks.git"
+    provider  = "github"
+    branch   = "main"
+  }
+  
   task {
     task_key = "create_departamentos"
     
     notebook_task {
-      notebook_path = var.notebooks["create_departamentos"]
+      notebook_path = "terraform/src/notebooks/02_create_departamentos"
+      source = "GIT"
     }
   }
   
@@ -13,7 +20,8 @@ resource "databricks_job" "this" {
     task_key = "create_funcionarios"
     
     notebook_task {
-      notebook_path = var.notebooks["create_funcionarios"]
+      notebook_path = "terraform/src/notebooks/01_create_funcionarios"
+      source = "GIT"
     }
     
     depends_on {
@@ -24,6 +32,16 @@ resource "databricks_job" "this" {
   tags = merge(var.tags, {
     "CreatedBy" = "Terraform"
   })
+  
+  queue {
+    enabled = false
+  }
+  
+  run_as {
+    user_name = "viniciusdvale@gmail.com"
+  }
+  
+  performance_target = "PERFORMANCE_OPTIMIZED"
 }
 
 # Trigger job run immediately after creation

@@ -8,12 +8,6 @@ variable "sql_warehouse_id" {
   type        = string
 }
 
-variable "notebooks" {
-  description = "Notebook paths"
-  type        = map(string)
-  default     = {}
-}
-
 variable "tags" {
   description = "Job tags"
   type        = map(string)
