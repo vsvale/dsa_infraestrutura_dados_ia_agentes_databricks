@@ -74,6 +74,7 @@ wheels/
 # Databricks specific
 databricks-data/
 *.dbc
+.ai-dev-kit/
 
 # AWS credentials (if any)
 .aws/
