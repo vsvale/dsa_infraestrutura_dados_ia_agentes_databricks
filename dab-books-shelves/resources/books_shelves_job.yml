@@ -16,7 +16,8 @@ resources:
       tasks:
         - task_key: "create_shelves"
           notebook_task:
-            notebook_path: "dab-books-shelves/notebooks/02_create_shelves.ipynb"
+            notebook_path: "dab-books-shelves/notebooks/02_create_shelves"
+            source: GIT
             base_parameters:
               catalog_name: "${var.catalog_name}"
               schema_name: "${var.schema_name}"
@@ -25,7 +26,8 @@ resources:
           depends_on:
             - task_key: "create_shelves"
           notebook_task:
-            notebook_path: "dab-books-shelves/notebooks/01_create_books.ipynb"
+            notebook_path: "dab-books-shelves/notebooks/01_create_books"
+            source: GIT
             base_parameters:
               catalog_name: "${var.catalog_name}"
               schema_name: "${var.schema_name}"
@@ -44,3 +46,4 @@ resources:
       max_concurrent_runs: 1
       
       timeout_seconds: 3600
+      performance_target: PERFORMANCE_OPTIMIZED
