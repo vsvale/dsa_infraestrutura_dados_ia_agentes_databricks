@@ -15,12 +15,6 @@ variables:
     description: "Schema name for tables"
     default: "bronze"
 
-artifacts:
-  default:
-    type: whl
-    build: uv build
-    path: .
-
 targets:
   dev:
     default: true
