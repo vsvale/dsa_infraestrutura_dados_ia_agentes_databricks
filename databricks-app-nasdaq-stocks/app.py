@@ -615,17 +615,32 @@ def load_stock_data(symbol: str, period: str) -> Optional[pd.DataFrame]:
     try:
         data = yf.download(symbol, period=period, progress=False)
         if data.empty:
+            st.error(f"Nenhum dado encontrado para {symbol}")
             return None
         
         # Limpeza e validação básica
         data = data.dropna()
         if len(data) < 2:
+            st.error(f"Dados insuficientes para {symbol}")
             return None
             
         return data
     except Exception as e:
-        st.error(f"Erro ao carregar dados: {str(e)}")
+        st.error(f"Erro ao carregar dados de {symbol}: {str(e)}")
         return None
+
+
+# Inicializa session state para manter estado do botao
+if 'analysis_done' not in st.session_state:
+    st.session_state.analysis_done = False
+if 'stock_data' not in st.session_state:
+    st.session_state.stock_data = None
+
+
+def run_analysis():
+    """Callback para executar analise"""
+    st.session_state.analysis_done = True
+
 
 # Logo e título principal com design Serasa Experian
 col1, col2 = st.columns([1, 4])
@@ -754,10 +769,12 @@ st.sidebar.markdown("---")
 load_data = st.sidebar.button(
     "Analisar", 
     use_container_width=True,
-    type="primary"
+    type="primary",
+    on_click=run_analysis
 )
+
 # Lógica principal de carregamento e análise
-if load_data:
+if st.session_state.analysis_done:
     stock_data = load_stock_data(stock_symbol, period)
     
     if stock_data is not None:
