@@ -637,11 +637,11 @@ with col2:
 
 st.markdown("---")
 
-# Sidebar aprimorado com identidade visual Serasa
-st.sidebar.markdown("### 📊 Painel de Controle")
-st.sidebar.markdown("**Personalize sua análise inteligente**")
+# Sidebar aprimorado com identidade visual Serasa e instrucoes DSA
+st.sidebar.markdown("### Painel de Controle")
+st.sidebar.markdown("**Personalize sua analise inteligente**")
 
-# Lista expandida de ações populares com setores
+# Lista expandida de acoes populares com setores
 popular_stocks = {
     "Technology": {
         "Apple": "AAPL",
@@ -668,25 +668,47 @@ popular_stocks = {
     }
 }
 
-# Seleção de setor e empresa
+# Secao de instrucoes (adaptado do codigo DSA original)
+st.sidebar.markdown("---")
+st.sidebar.markdown("### Como Utilizar")
+st.sidebar.markdown("""
+1. **Selecione** o setor economico
+2. **Escolha** a empresa desejada
+3. **Defina** o periodo de analise
+4. **Clique** em "Analisar" para obter:
+   - Visualizacoes em tempo real
+   - Analise tecnica avancada
+   - Insights gerados por IA (Databricks)
+   - Recomendacoes para day trade
+
+**Exemplos de tickers:**
+- AAPL (Apple)
+- MSFT (Microsoft)
+- TSLA (Tesla)
+- NVDA (NVIDIA)
+- AMZN (Amazon)
+- GOOGL (Alphabet)
+""")
+
+# Selecao de setor e empresa
 selected_sector = st.sidebar.selectbox(
-    "🏢 Setor Econômico:",
+    "Setor Economico:",
     options=list(popular_stocks.keys()),
     index=0
 )
 
 sector_stocks = popular_stocks[selected_sector]
 selected_company = st.sidebar.selectbox(
-    "📈 Empresa:",
+    "Empresa:",
     options=list(sector_stocks.keys())
 )
 
 stock_symbol = sector_stocks[selected_company]
 
-# Período de tempo expandido
+# Periodo de tempo expandido
 period_options = {
     "5 Dias": "5d",
-    "1 Mês": "1mo",
+    "1 Mes": "1mo",
     "3 Meses": "3mo", 
     "6 Meses": "6mo",
     "1 Ano": "1y",
@@ -695,31 +717,45 @@ period_options = {
 }
 
 selected_period = st.sidebar.selectbox(
-    "📅 Período de Análise:",
+    "Periodo de Analise:",
     options=list(period_options.keys()),
     index=4  # Default para 1 ano
 )
 
 period = period_options[selected_period]
 
-# Opções avançadas
-st.sidebar.markdown("### ⚙️ Opções Avançadas")
-show_volume = st.sidebar.checkbox("📊 Mostrar Volume", value=True)
-show_moving_averages = st.sidebar.checkbox("📈 Médias Móveis", value=True)
+# Opcoes avancadas
+st.sidebar.markdown("---")
+st.sidebar.markdown("### Opcoes Avancadas")
+show_volume = st.sidebar.checkbox("Mostrar Volume", value=True)
+show_moving_averages = st.sidebar.checkbox("Medias Moveis", value=True)
+show_candlestick = st.sidebar.checkbox("Grafico Candlestick", value=True)
+show_ai_analysis = st.sidebar.checkbox("Analise por IA (Databricks)", value=True)
+
 ma_periods = st.sidebar.multiselect(
-    "Períodos das Médias:",
+    "Periodos das Medias:",
     options=["20", "50", "200"],
     default=["20", "50"]
 )
 
-# Botão principal de carregamento
-col1, col2, col3 = st.sidebar.columns([1, 2, 1])
-with col2:
-    load_data = st.button(
-        "🚀 Carregar Dados", 
-        use_container_width=True,
-        type="primary"
-    )
+# Info sobre Databricks AI
+st.sidebar.markdown("---")
+st.sidebar.markdown("### Powered by Databricks")
+st.sidebar.markdown("""
+Esta aplicacao utiliza:
+- **Databricks Model Serving** para analise com LLM
+- **Databricks SQL Warehouse** para consultas
+- **Unity Catalog** para governanca de dados
+- **Vector Search** para recomendacoes
+""")
+
+# Botao principal de carregamento
+st.sidebar.markdown("---")
+load_data = st.sidebar.button(
+    "Analisar", 
+    use_container_width=True,
+    type="primary"
+)
 # Lógica principal de carregamento e análise
 if load_data:
     stock_data = load_stock_data(stock_symbol, period)
