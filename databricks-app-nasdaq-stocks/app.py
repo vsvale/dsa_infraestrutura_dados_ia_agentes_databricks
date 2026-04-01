@@ -699,34 +699,33 @@ if load_data:
                 "Volume": st.column_config.NumberColumn("Volume", format="%,")
             }
         )
+        # ===== Insights - Clean =====
+        st.markdown("<h3 style='font-weight: 600; color: #1a1a2e;'>Insights</h3>", unsafe_allow_html=True)
         
-    # ===== Insights - Clean =====
-    st.markdown("<h3 style='font-weight: 600; color: #1a1a2e;'>Insights</h3>", unsafe_allow_html=True)
-    
-    insights = []
-    
-    # Analise de tendencia
-    short_ma = chart_data['Close'].rolling(window=20).mean().iloc[-1]
-    long_ma = chart_data['Close'].rolling(window=50).mean().iloc[-1]
-    
-    if short_ma > long_ma:
-        insights.append("**Tendencia de Alta:** Media de 20 dias acima da media de 50 dias")
-    elif short_ma < long_ma:
-        insights.append("**Tendencia de Baixa:** Media de 20 dias abaixo da media de 50 dias")
-    else:
-        insights.append("**Tendencia Neutra:** Medias moveis proximas")
-    
-    # Analise de volatilidade
-    if volatility > 30:
-        insights.append("**Alta Volatilidade:** Ativo com grande variacao de precos")
-    elif volatility < 15:
-        insights.append("**Baixa Volatilidade:** Ativo estavel nos ultimos periodos")
-    
-    # Analise de preco
-    if current_price > max_price * 0.95:
-        insights.append("**Proximo da Maxima:** Preco proximo de maximas recentes")
-    elif current_price < min_price * 1.05:
-        insights.append("**Proximo da Minima:** Preco proximo de minimas recentes")
+        insights = []
+        
+        # Analise de tendencia
+        short_ma = chart_data['Close'].rolling(window=20).mean().iloc[-1]
+        long_ma = chart_data['Close'].rolling(window=50).mean().iloc[-1]
+        
+        if short_ma > long_ma:
+            insights.append("**Tendencia de Alta:** Media de 20 dias acima da media de 50 dias")
+        elif short_ma < long_ma:
+            insights.append("**Tendencia de Baixa:** Media de 20 dias abaixo da media de 50 dias")
+        else:
+            insights.append("**Tendencia Neutra:** Medias moveis proximas")
+        
+        # Analise de volatilidade
+        if volatility > 30:
+            insights.append("**Alta Volatilidade:** Ativo com grande variacao de precos")
+        elif volatility < 15:
+            insights.append("**Baixa Volatilidade:** Ativo estavel nos ultimos periodos")
+        
+        # Analise de preco
+        if current_price > max_price * 0.95:
+            insights.append("**Proximo da Maxima:** Preco proximo de maximas recentes")
+        elif current_price < min_price * 1.05:
+            insights.append("**Proximo da Minima:** Preco proximo de minimas recentes")
         
         # Exibir insights
         for insight in insights:
