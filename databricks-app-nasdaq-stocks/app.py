@@ -13,6 +13,7 @@ import yfinance as yf
 from typing import Optional
 
 from databricks.sdk import WorkspaceClient
+from databricks.sdk.service.serving import ChatMessage
 
 MODEL_ENDPOINT = "databricks-meta-llama-3-3-70b-instruct"
 
@@ -231,8 +232,8 @@ Use markdown com bullets. Seja direto e objetivo."""
         response = client.serving_endpoints.query(
             name=MODEL_ENDPOINT,
             messages=[
-                {"role": "system", "content": "Você é um analista financeiro especialista em day trade."},
-                {"role": "user",   "content": prompt}
+                ChatMessage(role="system", content="Você é um analista financeiro especialista em day trade."),
+                ChatMessage(role="user",   content=prompt)
             ],
             max_tokens=700,
             temperature=0.4
