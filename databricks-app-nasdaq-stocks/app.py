@@ -729,27 +729,9 @@ popular_stocks = {
     }
 }
 
-# Secao de instrucoes (adaptado do codigo DSA original)
+# Secao de instrucoes simples
 st.sidebar.markdown("---")
-st.sidebar.markdown("### Como Utilizar")
-st.sidebar.markdown("""
-1. **Selecione** o setor economico
-2. **Escolha** a empresa desejada
-3. **Defina** o periodo de analise
-4. **Clique** em "Analisar" para obter:
-   - Visualizacoes em tempo real
-   - Analise tecnica avancada
-   - Insights gerados por IA (Databricks)
-   - Recomendacoes para day trade
-
-**Exemplos de tickers:**
-- AAPL (Apple)
-- MSFT (Microsoft)
-- TSLA (Tesla)
-- NVDA (NVIDIA)
-- AMZN (Amazon)
-- GOOGL (Alphabet)
-""")
+st.sidebar.markdown("**Como Usar:** Selecione empresa e periodo, depois clique em Analisar.")
 
 # Selecao de setor e empresa
 selected_sector = st.sidebar.selectbox(
@@ -799,11 +781,11 @@ ma_periods = st.sidebar.multiselect(
     default=["20", "50"]
 )
 
-# Modo demonstracao (quando API falha)
-use_demo_data = st.sidebar.checkbox("Usar Dados de Demonstracao", value=False, help="Ative se os dados reais nao carregarem")
+# Modo demonstracao - padrao True ja que API nao funciona no Databricks App
+use_demo_data = st.sidebar.checkbox("Usar Dados Reais (Yahoo Finance)", value=False, help="Desative para usar dados reais. Nota: Pode nao funcionar no Databricks App devido a restricoes de rede.")
 
-if use_demo_data:
-    st.sidebar.info("Modo demonstracao ativo. Os dados sao simulados para fins de teste.")
+if not use_demo_data:
+    st.sidebar.info("Modo demonstracao ativo. Dados sao simulados.")
 
 # Info sobre Databricks AI
 st.sidebar.markdown("---")
@@ -827,14 +809,17 @@ load_data = st.sidebar.button(
 
 # Lógica principal de carregamento e análise
 if st.session_state.analysis_done:
-    # Tenta carregar dados reais primeiro
-    stock_data = load_stock_data(stock_symbol, period)
-    
-    # Se falhou e modo demo esta ativo, usa dados de demonstracao
-    if stock_data is None and use_demo_data:
-        st.info(f"Usando dados de demonstracao para {stock_symbol}")
+    # Por padrao usa dados de demonstracao (modo demo=True por padrao)
+    if not use_demo_data:
+        # Modo demonstracao
         stock_data = generate_demo_data(stock_symbol, period)
-        st.success(f"Gerados {len(stock_data)} registros de demonstracao")
+        st.info(f"Usando dados de demonstracao para {stock_symbol} ({len(stock_data)} registros)")
+    else:
+        # Tenta carregar dados reais (provavelmente vai falhar no Databricks App)
+        stock_data = load_stock_data(stock_symbol, period)
+        if stock_data is None:
+            st.error("Nao foi possivel carregar dados reais. Usando demonstracao.")
+            stock_data = generate_demo_data(stock_symbol, period)
     
     if stock_data is not None:
         # Calcular métricas básicas
@@ -1304,29 +1289,6 @@ else:
         <div style="font-size: 1.5rem; color: #E80070; font-weight: 600;">&larr;</div>
     </div>
     """, unsafe_allow_html=True)
-
-# Informacoes adicionais
-st.markdown("---")
-st.markdown("### Sobre a Plataforma")
-st.markdown("""
-**Plataforma inteligente de analise de acoes** desenvolvida com a qualidade e confianca Serasa.
-
-**Funcionalidades Principais:**
-- Visualizacao em tempo real de precos historicos
-- Analise de volume de negociacao
-- Estatisticas detalhadas para tomada de decisao
-- Dados atualizados diretamente do mercado
-- Interface intuitiva com design Serasa
-
-**Como usar:**
-1. Selecione uma empresa no painel lateral
-2. Escolha o periodo de analise desejado
-3. Clique em "Carregar Dados" para visualizar
-4. Explore os graficos e estatisticas
-
-**Seguranca e Confianca:**
-Dados obtidos de fontes confiaveis com a qualidade Serasa Experian.
-""")
 
 # Footer clean
 st.markdown("---")
