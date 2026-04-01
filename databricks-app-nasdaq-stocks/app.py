@@ -13,9 +13,9 @@ import yfinance as yf
 from typing import Optional
 
 from databricks.sdk import WorkspaceClient
-from databricks.sdk.service.serving import ChatMessage
+from databricks.sdk.service.serving import ChatMessage, ChatMessageRole
 
-MODEL_ENDPOINT = "databricks-meta-llama-3-3-70b-instruct"
+MODEL_ENDPOINT = "databricks-gemini-3-1-flash-lite"
 
 @st.cache_resource
 def get_databricks_client() -> Optional[WorkspaceClient]:
@@ -232,8 +232,8 @@ Use markdown com bullets. Seja direto e objetivo."""
         response = client.serving_endpoints.query(
             name=MODEL_ENDPOINT,
             messages=[
-                ChatMessage(role="system", content="Você é um analista financeiro especialista em day trade."),
-                ChatMessage(role="user",   content=prompt)
+                ChatMessage(role=ChatMessageRole.SYSTEM, content="Você é um analista financeiro especialista em day trade."),
+                ChatMessage(role=ChatMessageRole.USER,   content=prompt)
             ],
             max_tokens=700,
             temperature=0.4
