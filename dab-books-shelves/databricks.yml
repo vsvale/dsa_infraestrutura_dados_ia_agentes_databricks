@@ -13,7 +13,7 @@ variables:
     default: "dsa"
   schema_name:
     description: "Schema name for tables"
-    default: "bronze"
+    default: "gold"
 
 targets:
   dev:
@@ -24,7 +24,7 @@ targets:
       root_path: /Workspace/Users/${workspace.current_user.userName}/.bundle/${bundle.target}/${bundle.name}
     variables:
       catalog_name: "dsa"
-      schema_name: "bronze"
+      schema_name: "gold"
       warehouse_id: "29c4dccd4d8d7e90"
 
   staging:
@@ -35,7 +35,7 @@ targets:
       root_path: /Shared/.bundle/${bundle.target}/${bundle.name}
     variables:
       catalog_name: "dsa"
-      schema_name: "silver"
+      schema_name: "gold"
       warehouse_id: "29c4dccd4d8d7e90"
 
   prod:
