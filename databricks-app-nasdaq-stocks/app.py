@@ -60,7 +60,9 @@ st.markdown("""
 }
 
 /* ── Base ── */
-* { font-family: 'Inter', -apple-system, sans-serif !important; box-sizing: border-box; }
+* { box-sizing: border-box; }
+html, body, [class*="css"], [class*="st-"], p, h1, h2, h3, h4, div, span, label { font-family: 'Inter', -apple-system, sans-serif !important; }
+.material-symbols-rounded, .material-symbols-outlined, .material-icons { font-family: 'Material Symbols Rounded', 'Material Icons', sans-serif !important; }
 .stApp { background: var(--surface-dim) !important; color: var(--text) !important; }
 p, label, div, span { color: var(--text); }
 h1,h2,h3,h4 { color: var(--text) !important; letter-spacing: -0.025em; }
