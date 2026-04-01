@@ -381,8 +381,23 @@ def create_stock_header(company_name: str, symbol: str, current_price: float,
     """, unsafe_allow_html=True)
 
 def create_enhanced_chart(data: pd.DataFrame, title: str, y_column: str, 
-                      color: str = "var(--color-primary)", chart_type: str = "line") -> go.Figure:
+                      color: str = "#E80070", chart_type: str = "line") -> go.Figure:
     """Cria gráfico aprimorado com estilo Serasa"""
+    # Mapeia cores CSS para hex se necessario
+    color_map = {
+        "var(--color-primary)": "#E80070",
+        "var(--color-secondary)": "#C4005C",
+        "var(--color-accent)": "#FF1A8C",
+        "var(--color-success)": "#10b981",
+        "var(--color-warning)": "#f59e0b",
+        "var(--color-error)": "#ef4444",
+        "var(--color-text-primary)": "#1a1a2e",
+        "var(--color-text-secondary)": "#6b7280"
+    }
+    
+    # Converte cor se for variavel CSS
+    plot_color = color_map.get(color, color)
+    
     if chart_type == "line":
         fig = go.Figure()
         fig.add_trace(go.Scatter(
@@ -390,18 +405,18 @@ def create_enhanced_chart(data: pd.DataFrame, title: str, y_column: str,
             y=data[y_column],
             mode='lines',
             line=dict(
-                color=color,
+                color=plot_color,
                 width=3
             ),
-            fill='tonexty' if 'tonexty' in locals() else None,
-            fillcolor=f'{color}20'
+            fill='tozeroy',
+            fillcolor=f'{plot_color}33'  # 20% opacity em hex
         ))
     elif chart_type == "bar":
         fig = go.Figure()
         fig.add_trace(go.Bar(
             x=data.index,
             y=data[y_column],
-            marker_color=color,
+            marker_color=plot_color,
             opacity=0.8
         ))
     
@@ -409,13 +424,13 @@ def create_enhanced_chart(data: pd.DataFrame, title: str, y_column: str,
         title=dict(
             text=title,
             x=0.5,
-            font=dict(size=18, color="var(--color-primary)")
+            font=dict(size=18, color="#E80070")
         ),
         xaxis_title="Data",
         yaxis_title=y_column,
         plot_bgcolor='white',
         paper_bgcolor='white',
-        font=dict(color="var(--color-text-primary)"),
+        font=dict(color="#1a1a2e"),
         margin=dict(l=60, r=30, t=60, b=60),
         hovermode='x unified',
         showlegend=False,
@@ -883,17 +898,17 @@ if st.session_state.analysis_done:
                 chart_data[f'MA_{period}'] = chart_data['Close'].rolling(window=int(period)).mean()
         
         # Gráfico principal de preços
-        st.markdown("### 📈 Evolução do Preço")
+        st.markdown("### Evolucao do Preco")
         price_fig = create_enhanced_chart(
             chart_data, 
-            f"{selected_company} - Histórico de Preços",
+            f"{selected_company} - Historico de Precos",
             'Close',
-            "var(--color-primary)"
+            "#E80070"
         )
         
-        # Adicionar médias móveis ao gráfico
+        # Adicionar medias moveis ao grafico
         if show_moving_averages and ma_periods:
-            colors = ["var(--color-secondary)", "var(--color-accent)", "#9C27B0"]
+            colors = ["#C4005C", "#FF1A8C", "#9C27B0"]
             for i, period in enumerate(ma_periods):
                 if f'MA_{period}' in chart_data.columns:
                     price_fig.add_trace(go.Scatter(
@@ -910,12 +925,12 @@ if st.session_state.analysis_done:
         
         # Gráfico de volume
         if show_volume:
-            st.markdown("### 📊 Volume de Negociação")
+            st.markdown("### Volume de Negociacao")
             volume_fig = create_enhanced_chart(
                 chart_data, 
-                f"{selected_company} - Volume de Negociação",
+                f"{selected_company} - Volume de Negociacao",
                 'Volume',
-                "var(--color-success)",
+                "#10b981",
                 "bar"
             )
             st.plotly_chart(volume_fig, use_container_width=True)
