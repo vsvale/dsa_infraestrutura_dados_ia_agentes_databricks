@@ -1,0 +1,22 @@
+bundle:
+  name: nasdaq-stocks-app
+
+targets:
+  development:
+    mode: development
+    workspace:
+      host: https://dbc-285062b2-ce3e.cloud.databricks.com
+      root_path: /Workspace/Users/viniciusdvale@gmail.com/nasdaq-stocks-app
+
+  production:
+    mode: production
+    workspace:
+      host: https://dbc-285062b2-ce3e.cloud.databricks.com
+      root_path: /Workspace/Shared/nasdaq-stocks-app
+
+resources:
+  apps:
+    nasdaq-stocks-app:
+      name: nasdaq-stocks-dashboard
+      description: Interactive dashboard for NASDAQ stock analysis
+      source_code_path: src
