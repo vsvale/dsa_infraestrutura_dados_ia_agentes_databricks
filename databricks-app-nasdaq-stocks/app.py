@@ -645,6 +645,37 @@ def load_stock_data(symbol: str, period: str) -> Optional[pd.DataFrame]:
         return None
 
 
+def generate_demo_data(symbol: str, period: str = "6mo") -> pd.DataFrame:
+    """Gera dados de demonstração quando a API falha"""
+    import numpy as np
+    from datetime import datetime, timedelta
+    
+    # Define numero de dias baseado no periodo
+    days_map = {"5d": 5, "1mo": 22, "3mo": 66, "6mo": 132, "1y": 252, "2y": 504, "5y": 1260}
+    days = days_map.get(period, 132)
+    
+    # Gera datas
+    end_date = datetime.now()
+    dates = pd.date_range(end=end_date, periods=days, freq='B')  # Business days
+    
+    # Gera preço base
+    base_price = np.random.uniform(50, 200)
+    
+    # Gera serie de precos com tendencia e volatilidade
+    returns = np.random.normal(0.001, 0.02, len(dates))
+    prices = base_price * np.exp(np.cumsum(returns))
+    
+    # Gera OHLC a partir do preço de fechamento
+    data = pd.DataFrame(index=dates)
+    data['Close'] = prices
+    data['High'] = prices * (1 + np.abs(np.random.normal(0, 0.01, len(dates))))
+    data['Low'] = prices * (1 - np.abs(np.random.normal(0, 0.01, len(dates))))
+    data['Open'] = data['Low'] + np.random.random(len(dates)) * (data['High'] - data['Low'])
+    data['Volume'] = np.random.randint(1000000, 50000000, len(dates))
+    
+    return data
+
+
 # Inicializa session state para manter estado do botao
 if 'analysis_done' not in st.session_state:
     st.session_state.analysis_done = False
@@ -768,6 +799,12 @@ ma_periods = st.sidebar.multiselect(
     default=["20", "50"]
 )
 
+# Modo demonstracao (quando API falha)
+use_demo_data = st.sidebar.checkbox("Usar Dados de Demonstracao", value=False, help="Ative se os dados reais nao carregarem")
+
+if use_demo_data:
+    st.sidebar.info("Modo demonstracao ativo. Os dados sao simulados para fins de teste.")
+
 # Info sobre Databricks AI
 st.sidebar.markdown("---")
 st.sidebar.markdown("### Powered by Databricks")
@@ -790,7 +827,14 @@ load_data = st.sidebar.button(
 
 # Lógica principal de carregamento e análise
 if st.session_state.analysis_done:
+    # Tenta carregar dados reais primeiro
     stock_data = load_stock_data(stock_symbol, period)
+    
+    # Se falhou e modo demo esta ativo, usa dados de demonstracao
+    if stock_data is None and use_demo_data:
+        st.info(f"Usando dados de demonstracao para {stock_symbol}")
+        stock_data = generate_demo_data(stock_symbol, period)
+        st.success(f"Gerados {len(stock_data)} registros de demonstracao")
     
     if stock_data is not None:
         # Calcular métricas básicas
