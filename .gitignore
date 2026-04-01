@@ -1,3 +1,7 @@
+# Databricks bundle build artifacts
+.databricks/
+.databricksignore
+
 # Terraform files
 *.tfstate
 *.tfstate.*

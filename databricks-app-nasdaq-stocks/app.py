@@ -22,180 +22,271 @@ st.set_page_config(
     }
 )
 
-# CSS customizado para identidade visual Serasa Experian
+# CSS customizado - Design Ultra Moderno
 st.markdown("""
 <style>
-    /* CSS Variables Serasa Experian */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+    
     :root {
-        --color-primary: #0066CC;
-        --color-primary-dark: #0052A3;
-        --color-secondary: #00A650;
-        --color-accent: #FF6B35;
-        --color-surface: #F8F9FA;
-        --color-border: #E9ECEF;
-        --color-text-primary: #212529;
-        --color-text-secondary: #6C757D;
-        --color-success: #00A650;
-        --color-warning: #FFC107;
-        --color-error: #DC3545;
-        --font-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        --font-family-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
-        --border-radius-sm: 4px;
-        --border-radius-md: 8px;
-        --border-radius-lg: 12px;
-        --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
-        --shadow-md: 0 4px 6px rgba(0,0,0,0.16);
-        --shadow-lg: 0 10px 25px rgba(0,0,0,0.20);
-        --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-        --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+        --serasa-blue: #0066CC;
+        --serasa-dark: #003D7A;
+        --serasa-green: #00A650;
+        --accent-orange: #FF6B35;
     }
     
-    /* Base styles */
-    .stApp {
-        background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-        color: var(--color-text-primary);
-        font-family: var(--font-family-primary);
+    * {
+        font-family: 'Inter', -apple-system, sans-serif;
     }
     
-    /* Typography */
-    .stTitle, h1, h2, h3, h4, h5, h6 {
-        color: var(--color-primary);
-        font-family: var(--font-family-primary);
-        font-weight: 600;
-        line-height: 1.2;
-        margin-bottom: 0.5rem;
+    /* Hero with animated gradient */
+    .hero-container {
+        background: linear-gradient(-45deg, #0066CC, #0052A3, #003D7A, #00A650);
+        background-size: 400% 400%;
+        animation: gradientShift 8s ease infinite;
+        border-radius: 24px;
+        padding: 5rem 4rem;
+        margin: 1rem 0 3rem 0;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 30px 60px -15px rgba(0, 102, 204, 0.4);
     }
     
-    h1 { font-size: 2.5rem; font-weight: 700; }
-    h2 { font-size: 2rem; }
-    h3 { font-size: 1.5rem; }
-    
-    /* Sidebar enhancements */
-    .css-1d391kg, .css-1lcbmhc {
-        background: var(--color-surface);
-        border-right: 1px solid var(--color-border);
+    @keyframes gradientShift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
     }
     
-    /* Cards and containers */
-    div[data-testid="metric-container"], 
-    div[data-testid="stHorizontalBlock"],
-    div[data-testid="column"] {
+    /* Particle effect overlay */
+    .hero-container::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: 
+            radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+            radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
+            radial-gradient(circle at 40% 20%, rgba(0,166,80,0.2) 0%, transparent 50%);
+        animation: float 20s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+        0%, 100% { transform: translate(0, 0) scale(1); }
+        33% { transform: translate(30px, -30px) scale(1.1); }
+        66% { transform: translate(-20px, 20px) scale(0.9); }
+    }
+    
+    .hero-title {
+        font-size: 4rem;
+        font-weight: 900;
+        color: white;
+        margin-bottom: 1rem;
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+        position: relative;
+        z-index: 2;
+        text-shadow: 0 4px 30px rgba(0,0,0,0.2);
+    }
+    
+    .hero-subtitle {
+        font-size: 1.35rem;
+        color: rgba(255,255,255,0.95);
+        margin-bottom: 2.5rem;
+        max-width: 550px;
+        line-height: 1.7;
+        position: relative;
+        z-index: 2;
+        font-weight: 400;
+    }
+    
+    /* Modern Feature Cards */
+    .feature-card {
         background: white;
-        border: 1px solid var(--color-border);
-        border-radius: var(--border-radius-md);
-        padding: 1.5rem;
-        box-shadow: var(--shadow-sm);
-        transition: all var(--transition-base);
+        border-radius: 20px;
+        padding: 2.5rem;
+        border: 1px solid rgba(0,102,204,0.08);
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.05);
     }
     
-    div[data-testid="metric-container"]:hover {
-        box-shadow: var(--shadow-md);
+    .feature-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #00A650, #0066CC);
+        transform: scaleX(0);
+        transition: transform 0.5s ease;
+    }
+    
+    .feature-card:hover {
+        transform: translateY(-12px) scale(1.02);
+        box-shadow: 0 30px 60px -20px rgba(0, 102, 204, 0.25);
+        border-color: rgba(0,102,204,0.2);
+    }
+    
+    .feature-card:hover::before {
+        transform: scaleX(1);
+    }
+    
+    .feature-icon {
+        font-size: 3.5rem;
+        margin-bottom: 1.5rem;
+        display: inline-block;
+        filter: drop-shadow(0 4px 10px rgba(0,0,0,0.1));
+    }
+    
+    /* Glass Trust Badges */
+    .trust-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: rgba(255,255,255,0.12);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        padding: 0.6rem 1.2rem;
+        border-radius: 50px;
+        font-size: 0.9rem;
+        color: white;
+        font-weight: 500;
+        margin-right: 0.75rem;
+        margin-bottom: 0.75rem;
+        border: 1px solid rgba(255,255,255,0.2);
+        position: relative;
+        z-index: 2;
+        transition: all 0.3s ease;
+    }
+    
+    .trust-badge:hover {
+        background: rgba(255,255,255,0.2);
         transform: translateY(-2px);
     }
     
-    /* Buttons Serasa */
-    .stButton > button {
-        background: var(--color-primary);
-        color: white;
-        border: none;
-        padding: 0.75rem 1.5rem;
-        border-radius: var(--border-radius-md);
-        font-weight: 600;
-        font-family: var(--font-family-primary);
-        transition: all var(--transition-base);
-        box-shadow: var(--shadow-sm);
+    /* Stats with gradient text */
+    .stat-number {
+        font-size: 3rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, #0066CC 0%, #00A650 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 0.5rem;
+        letter-spacing: -0.02em;
     }
     
-    .stButton > button:hover {
-        background: var(--color-primary-dark);
-        box-shadow: var(--shadow-md);
-        transform: translateY(-1px);
-    }
-    
-    .stButton > button:active {
-        transform: translateY(0);
-        box-shadow: var(--shadow-sm);
-    }
-    
-    /* Select boxes and inputs */
-    .stSelectbox > div > div {
+    /* Step cards with numbers */
+    .step-card {
         background: white;
-        border: 1px solid var(--color-border);
-        border-radius: var(--border-radius-md);
+        border-radius: 20px;
+        padding: 2rem;
+        text-align: center;
+        border: 1px solid rgba(0,102,204,0.08);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
     }
     
-    /* Data visualization */
-    .js-plotly-plot {
-        border-radius: var(--border-radius-lg);
+    .step-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px -15px rgba(0, 102, 204, 0.15);
+    }
+    
+    .step-number {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #00A650 0%, #0066CC 100%);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        font-size: 1.5rem;
+        margin: 0 auto 1.5rem auto;
+        box-shadow: 0 10px 30px -10px rgba(0, 102, 204, 0.4);
+    }
+    
+    /* Floating icon animation */
+    @keyframes iconFloat {
+        0%, 100% { transform: translateY(0) rotate(0deg); }
+        25% { transform: translateY(-15px) rotate(3deg); }
+        75% { transform: translateY(15px) rotate(-3deg); }
+    }
+    
+    .floating-icon {
+        animation: iconFloat 6s ease-in-out infinite;
+        font-size: 7rem;
+        opacity: 0.95;
+        filter: drop-shadow(0 10px 30px rgba(0,0,0,0.2));
+        position: relative;
+        z-index: 2;
+    }
+    
+    /* CTA Section */
+    .cta-section {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        border-radius: 24px;
+        padding: 3rem;
+        text-align: center;
+        margin-top: 3rem;
+        border: 2px dashed rgba(0,102,204,0.2);
+        position: relative;
         overflow: hidden;
     }
     
-    /* Status indicators */
-    .positive {
-        color: var(--color-success);
-        font-weight: 600;
+    .cta-section::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(0,102,204,0.03) 0%, transparent 70%);
+        animation: rotate 30s linear infinite;
     }
     
-    .negative {
-        color: var(--color-error);
-        font-weight: 600;
+    @keyframes rotate {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
     }
     
-    .neutral {
-        color: var(--color-text-secondary);
-        font-weight: 600;
+    /* Section headers */
+    h3 {
+        font-size: 1.75rem !important;
+        font-weight: 700 !important;
+        color: #003D7A !important;
+        margin-bottom: 2rem !important;
+        letter-spacing: -0.02em;
     }
     
-    /* Loading states */
-    .stSpinner > div {
-        border-top-color: var(--color-primary) !important;
+    /* Button animations */
+    @keyframes shimmer {
+        0% { background-position: -200% center; }
+        100% { background-position: 200% center; }
     }
     
-    /* Footer */
-    .footer {
-        text-align: center;
-        color: var(--color-text-secondary);
-        font-size: 0.875rem;
-        margin-top: 3rem;
-        padding: 2rem;
-        border-top: 1px solid var(--color-border);
-        background: var(--color-surface);
+    .stButton > button {
+        background: linear-gradient(90deg, #0066CC, #0052A3, #0066CC) !important;
+        background-size: 200% auto !important;
+        animation: shimmer 3s linear infinite !important;
+        color: white !important;
+        border: none !important;
+        padding: 0.875rem 2rem !important;
+        border-radius: 12px !important;
+        font-weight: 600 !important;
+        font-size: 1.1rem !important;
+        transition: all 0.3s ease !important;
+        box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3) !important;
     }
     
-    /* Responsive design */
-    @media (max-width: 768px) {
-        .stApp {
-            padding: 0.5rem;
-        }
-        
-        div[data-testid="metric-container"] {
-            padding: 1rem;
-        }
-    }
-    
-    /* Accessibility */
-    @media (prefers-reduced-motion: reduce) {
-        * {
-            animation-duration: 0.01ms !important;
-            animation-iteration-count: 1 !important;
-            transition-duration: 0.01ms !important;
-        }
-    }
-    
-    /* Custom animations */
-    @keyframes slideInUp {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-    
-    .animate-slide-in {
-        animation: slideInUp 0.6s ease-out;
+    .stButton > button:hover {
+        transform: translateY(-3px) !important;
+        box-shadow: 0 10px 30px rgba(0, 102, 204, 0.4) !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -639,22 +730,199 @@ if load_data:
             st.markdown(f"- {insight}")
             
 else:
-    # Mensagem inicial
+    # ===== HERO SECTION - Ultra Modern Landing Page =====
     st.markdown("""
-    <div style="
-        text-align: center;
-        padding: 3rem;
-        background: var(--color-surface);
-        border-radius: var(--border-radius-lg);
-        margin: 2rem 0;
-    ">
-        <h2 style="color: var(--color-primary); margin-bottom: 1rem;">🚀 Bem-vindo à Serasa Experian Analytics</h2>
-        <p style="color: var(--color-text-secondary); font-size: 1.1rem; line-height: 1.6;">
-            Selecione uma empresa e período no painel lateral para iniciar sua análise inteligente de mercado.
-            <br><br>
-            <strong>Recursos avançados:</strong> Médias móveis, análise técnica, volatilidade e insights automáticos.
-        </p>
+    <div class="hero-container">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 3rem; position: relative; z-index: 2;">
+            <div style="flex: 1; min-width: 320px;">
+                <div style="display: inline-block; background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); padding: 0.5rem 1rem; border-radius: 50px; margin-bottom: 1.5rem; border: 1px solid rgba(255,255,255,0.2);">
+                    <span style="color: white; font-size: 0.875rem; font-weight: 500;">� Powered by Serasa Experian</span>
+                </div>
+                <h1 class="hero-title">Análise Inteligente<br/>de Mercado</h1>
+                <p class="hero-subtitle">
+                    Descubra oportunidades de investimento com dados em tempo real, 
+                    indicadores técnicos avançados e insights impulsionados por IA.
+                </p>
+                <div style="margin-bottom: 2rem;">
+                    <span class="trust-badge">🔒 LGPD Compliant</span>
+                    <span class="trust-badge">⚡ Real-time</span>
+                    <span class="trust-badge">🤖 AI-Powered</span>
+                </div>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <div style="text-align: center; padding: 0.75rem 1.5rem; background: rgba(255,255,255,0.1); border-radius: 12px; border: 1px solid rgba(255,255,255,0.2);">
+                        <div style="font-size: 1.5rem; font-weight: 700; color: white;">15+</div>
+                        <div style="font-size: 0.75rem; color: rgba(255,255,255,0.8);">Empresas</div>
+                    </div>
+                    <div style="text-align: center; padding: 0.75rem 1.5rem; background: rgba(255,255,255,0.1); border-radius: 12px; border: 1px solid rgba(255,255,255,0.2);">
+                        <div style="font-size: 1.5rem; font-weight: 700; color: white;">7</div>
+                        <div style="font-size: 0.75rem; color: rgba(255,255,255,0.8);">Períodos</div>
+                    </div>
+                    <div style="text-align: center; padding: 0.75rem 1.5rem; background: rgba(255,255,255,0.1); border-radius: 12px; border: 1px solid rgba(255,255,255,0.2);">
+                        <div style="font-size: 1.5rem; font-weight: 700; color: white;">5+</div>
+                        <div style="font-size: 0.75rem; color: rgba(255,255,255,0.8);">Indicadores</div>
+                    </div>
+                </div>
+            </div>
+            <div style="flex: 0 0 auto; text-align: center;">
+                <div class="floating-icon" style="font-size: 10rem; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3));">
+                    �
+                </div>
+            </div>
+        </div>
     </div>
+    """, unsafe_allow_html=True)
+    
+    # ===== FEATURE SHOWCASE - Modern Bento Grid =====
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align: center; margin-bottom: 3rem;'>✨ Recursos Poderosos</h3>", unsafe_allow_html=True)
+    
+    col1, col2, col3 = st.columns(3)
+    
+    features = [
+        ("⚡", "Dados em Tempo Real", "Acesso instantâneo a dados de mercado via Yahoo Finance API. Atualizações automáticas e precisas."),
+        ("📊", "Análise Técnica Avançada", "RSI, Médias Móveis, Suporte/Resistência, Volatilidade e Bandas de Bollinger em um só lugar."),
+        ("🎯", "Insights por IA", "Algoritmos inteligentes identificam tendências e oportunidades automaticamente para você.")
+    ]
+    
+    for col, (icon, title, desc) in zip([col1, col2, col3], features):
+        with col:
+            st.markdown(f"""
+            <div class="feature-card" style="height: 100%;">
+                <div class="feature-icon">{icon}</div>
+                <h4 style="color: #0066CC; margin-bottom: 1rem; font-weight: 700; font-size: 1.25rem;">{title}</h4>
+                <p style="color: #6C757D; font-size: 1rem; line-height: 1.7;">{desc}</p>
+            </div>
+            """, unsafe_allow_html=True)
+    
+    # ===== STATS SECTION - Gradient Cards =====
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align: center; margin-bottom: 2rem;'>📈 Em Números</h3>", unsafe_allow_html=True)
+    
+    col1, col2, col3, col4 = st.columns(4)
+    
+    stats_data = [
+        ("15+", "Empresas", "📊"),
+        ("7", "Períodos", "📅"),
+        ("4", "Setores", "🏢"),
+        ("5+", "Indicadores", "📉")
+    ]
+    
+    for col, (number, label, icon) in zip([col1, col2, col3, col4], stats_data):
+        with col:
+            st.markdown(f"""
+            <div style="
+                background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+                border-radius: 20px;
+                padding: 2rem 1rem;
+                text-align: center;
+                border: 1px solid rgba(0,102,204,0.1);
+                box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+                transition: all 0.3s ease;
+            " onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 20px 40px -15px rgba(0, 102, 204, 0.2)';" 
+               onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.05)';">
+                <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">{icon}</div>
+                <div class="stat-number">{number}</div>
+                <p style="color: #6C757D; font-size: 0.9rem; margin: 0; font-weight: 500;">{label}</p>
+            </div>
+            """, unsafe_allow_html=True)
+    
+    # ===== HOW IT WORKS - Modern Steps =====
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align: center; margin-bottom: 2rem;'>🚀 Como Funciona?</h3>", unsafe_allow_html=True)
+    
+    col1, col2, col3, col4 = st.columns(4)
+    
+    steps = [
+        ("1", "🏢", "Escolha", "Selecione o setor econômico"),
+        ("2", "📈", "Configure", "Defina empresa e período"),
+        ("3", "📊", "Analise", "Visualize gráficos e métricas"),
+        ("4", "💡", "Decida", "Tome decisões informadas")
+    ]
+    
+    for col, (num, icon, title, desc) in zip([col1, col2, col3, col4], steps):
+        with col:
+            st.markdown(f"""
+            <div class="step-card">
+                <div class="step-number">{num}</div>
+                <div style="font-size: 2.5rem; margin-bottom: 1rem;">{icon}</div>
+                <h5 style="color: #0066CC; margin-bottom: 0.75rem; font-weight: 700; font-size: 1.1rem;">{title}</h5>
+                <p style="color: #6C757D; font-size: 0.9rem; margin: 0; line-height: 1.6;">{desc}</p>
+            </div>
+            """, unsafe_allow_html=True)
+    
+    # ===== MARKET PREVIEW - Live Demo Chart =====
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align: center; margin-bottom: 2rem;'>📈 Preview do Mercado</h3>", unsafe_allow_html=True)
+    
+    # Create animated preview data
+    preview_data = pd.DataFrame({
+        'Dia': ['Seg', 'Ter', 'Qua', 'Qui', 'Sex'],
+        'Variação %': [1.2, -0.5, 2.1, 0.8, 1.5]
+    })
+    
+    fig_preview = go.Figure()
+    colors = ['#00A650' if x > 0 else '#DC3545' for x in preview_data['Variação %']]
+    
+    fig_preview.add_trace(go.Bar(
+        x=preview_data['Dia'],
+        y=preview_data['Variação %'],
+        marker=dict(
+            color=colors,
+            line=dict(color=colors, width=2),
+            opacity=0.8
+        ),
+        text=preview_data['Variação %'].apply(lambda x: f'{x:+.1f}%'),
+        textposition='outside',
+        textfont=dict(size=14, color='#333', family='Inter')
+    ))
+    
+    fig_preview.update_layout(
+        height=300,
+        showlegend=False,
+        plot_bgcolor='white',
+        paper_bgcolor='white',
+        margin=dict(l=40, r=40, t=40, b=40),
+        yaxis=dict(
+            showgrid=True,
+            gridcolor='rgba(0,0,0,0.05)',
+            zeroline=True,
+            zerolinecolor='rgba(0,0,0,0.1)',
+            zerolinewidth=2
+        ),
+        xaxis=dict(showgrid=False),
+        font=dict(family='Inter')
+    )
+    st.plotly_chart(fig_preview, use_container_width=True)
+    
+    # ===== CTA SECTION - Final Call to Action =====
+    st.markdown("""
+    <div class="cta-section">
+        <div style="position: relative; z-index: 2;">
+            <h2 style="color: #0066CC; margin-bottom: 1rem; font-weight: 800; font-size: 2rem;">🎯 Pronto para começar?</h2>
+            <p style="color: #6C757D; margin-bottom: 2rem; font-size: 1.15rem; max-width: 500px; margin-left: auto; margin-right: auto;">
+                Selecione uma empresa no painel lateral e descubra insights poderosos sobre o mercado financeiro.
+            </p>
+            <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
+                <div style="display: flex; align-items: center; gap: 0.5rem; color: #6C757D; font-size: 0.9rem;">
+                    <span style="color: #00A650;">✓</span> Gratuito
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.5rem; color: #6C757D; font-size: 0.9rem;">
+                    <span style="color: #00A650;">✓</span> Sem cadastro
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.5rem; color: #6C757D; font-size: 0.9rem;">
+                    <span style="color: #00A650;">✓</span> Dados em tempo real
+                </div>
+            </div>
+            <div style="font-size: 2.5rem; animation: bounce 2s infinite;">👈</div>
+        </div>
+    </div>
+    
+    <style>
+        @keyframes bounce {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(-15px); }
+        }
+    </style>
     """, unsafe_allow_html=True)
 
 # Informações adicionais com estilo Serasa
