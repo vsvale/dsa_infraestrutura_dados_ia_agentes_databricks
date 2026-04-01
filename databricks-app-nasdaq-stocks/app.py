@@ -22,25 +22,26 @@ st.set_page_config(
     }
 )
 
-# CSS customizado - Design Ultra Moderno
+# CSS customizado - Design Ultra Moderno Serasa
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
     
     :root {
-        --serasa-blue: #0066CC;
-        --serasa-dark: #003D7A;
-        --serasa-green: #00A650;
-        --accent-orange: #FF6B35;
+        --serasa-pink: #E6007E;
+        --serasa-pink-dark: #C4006B;
+        --serasa-pink-light: #FF1493;
+        --serasa-magenta: #D0006F;
+        --accent-purple: #6B2D5C;
     }
     
     * {
         font-family: 'Inter', -apple-system, sans-serif;
     }
     
-    /* Hero with animated gradient */
+    /* Hero with animated gradient - Serasa Pink */
     .hero-container {
-        background: linear-gradient(-45deg, #0066CC, #0052A3, #003D7A, #00A650);
+        background: linear-gradient(-45deg, #E6007E, #C4006B, #D0006F, #FF1493);
         background-size: 400% 400%;
         animation: gradientShift 8s ease infinite;
         border-radius: 24px;
@@ -48,7 +49,7 @@ st.markdown("""
         margin: 1rem 0 3rem 0;
         position: relative;
         overflow: hidden;
-        box-shadow: 0 30px 60px -15px rgba(0, 102, 204, 0.4);
+        box-shadow: 0 30px 60px -15px rgba(230, 0, 126, 0.4);
     }
     
     @keyframes gradientShift {
@@ -66,9 +67,9 @@ st.markdown("""
         right: 0;
         bottom: 0;
         background-image: 
-            radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+            radial-gradient(circle at 20% 50%, rgba(255,255,255,0.15) 0%, transparent 50%),
             radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
-            radial-gradient(circle at 40% 20%, rgba(0,166,80,0.2) 0%, transparent 50%);
+            radial-gradient(circle at 40% 20%, rgba(255,20,147,0.25) 0%, transparent 50%);
         animation: float 20s ease-in-out infinite;
     }
     
@@ -101,12 +102,12 @@ st.markdown("""
         font-weight: 400;
     }
     
-    /* Modern Feature Cards */
+    /* Modern Feature Cards - Serasa Theme */
     .feature-card {
         background: white;
         border-radius: 20px;
         padding: 2.5rem;
-        border: 1px solid rgba(0,102,204,0.08);
+        border: 1px solid rgba(230,0,126,0.08);
         transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         position: relative;
         overflow: hidden;
@@ -120,15 +121,15 @@ st.markdown("""
         left: 0;
         right: 0;
         height: 4px;
-        background: linear-gradient(90deg, #00A650, #0066CC);
+        background: linear-gradient(90deg, #E6007E, #FF1493);
         transform: scaleX(0);
         transition: transform 0.5s ease;
     }
     
     .feature-card:hover {
         transform: translateY(-12px) scale(1.02);
-        box-shadow: 0 30px 60px -20px rgba(0, 102, 204, 0.25);
-        border-color: rgba(0,102,204,0.2);
+        box-shadow: 0 30px 60px -20px rgba(230, 0, 126, 0.25);
+        border-color: rgba(230,0,126,0.2);
     }
     
     .feature-card:hover::before {
@@ -139,7 +140,7 @@ st.markdown("""
         font-size: 3.5rem;
         margin-bottom: 1.5rem;
         display: inline-block;
-        filter: drop-shadow(0 4px 10px rgba(0,0,0,0.1));
+        filter: drop-shadow(0 4px 10px rgba(230,0,126,0.2));
     }
     
     /* Glass Trust Badges */
@@ -147,7 +148,7 @@ st.markdown("""
         display: inline-flex;
         align-items: center;
         gap: 0.5rem;
-        background: rgba(255,255,255,0.12);
+        background: rgba(255,255,255,0.15);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
         padding: 0.6rem 1.2rem;
@@ -157,22 +158,22 @@ st.markdown("""
         font-weight: 500;
         margin-right: 0.75rem;
         margin-bottom: 0.75rem;
-        border: 1px solid rgba(255,255,255,0.2);
+        border: 1px solid rgba(255,255,255,0.25);
         position: relative;
         z-index: 2;
         transition: all 0.3s ease;
     }
     
     .trust-badge:hover {
-        background: rgba(255,255,255,0.2);
+        background: rgba(255,255,255,0.25);
         transform: translateY(-2px);
     }
     
-    /* Stats with gradient text */
+    /* Stats with gradient text - Serasa Pink */
     .stat-number {
         font-size: 3rem;
         font-weight: 800;
-        background: linear-gradient(135deg, #0066CC 0%, #00A650 100%);
+        background: linear-gradient(135deg, #E6007E 0%, #FF1493 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
@@ -180,26 +181,26 @@ st.markdown("""
         letter-spacing: -0.02em;
     }
     
-    /* Step cards with numbers */
+    /* Step cards with numbers - Serasa Theme */
     .step-card {
         background: white;
         border-radius: 20px;
         padding: 2rem;
         text-align: center;
-        border: 1px solid rgba(0,102,204,0.08);
+        border: 1px solid rgba(230,0,126,0.08);
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         position: relative;
     }
     
     .step-card:hover {
         transform: translateY(-8px);
-        box-shadow: 0 20px 40px -15px rgba(0, 102, 204, 0.15);
+        box-shadow: 0 20px 40px -15px rgba(230, 0, 126, 0.15);
     }
     
     .step-number {
         width: 60px;
         height: 60px;
-        background: linear-gradient(135deg, #00A650 0%, #0066CC 100%);
+        background: linear-gradient(135deg, #E6007E 0%, #FF1493 100%);
         color: white;
         border-radius: 50%;
         display: flex;
@@ -208,7 +209,7 @@ st.markdown("""
         font-weight: 800;
         font-size: 1.5rem;
         margin: 0 auto 1.5rem auto;
-        box-shadow: 0 10px 30px -10px rgba(0, 102, 204, 0.4);
+        box-shadow: 0 10px 30px -10px rgba(230, 0, 126, 0.4);
     }
     
     /* Floating icon animation */
@@ -222,19 +223,19 @@ st.markdown("""
         animation: iconFloat 6s ease-in-out infinite;
         font-size: 7rem;
         opacity: 0.95;
-        filter: drop-shadow(0 10px 30px rgba(0,0,0,0.2));
+        filter: drop-shadow(0 10px 30px rgba(230,0,126,0.3));
         position: relative;
         z-index: 2;
     }
     
-    /* CTA Section */
+    /* CTA Section - Serasa Theme */
     .cta-section {
-        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
         border-radius: 24px;
         padding: 3rem;
         text-align: center;
         margin-top: 3rem;
-        border: 2px dashed rgba(0,102,204,0.2);
+        border: 2px dashed rgba(230,0,126,0.2);
         position: relative;
         overflow: hidden;
     }
@@ -246,7 +247,7 @@ st.markdown("""
         left: -50%;
         width: 200%;
         height: 200%;
-        background: radial-gradient(circle, rgba(0,102,204,0.03) 0%, transparent 70%);
+        background: radial-gradient(circle, rgba(230,0,126,0.03) 0%, transparent 70%);
         animation: rotate 30s linear infinite;
     }
     
@@ -255,23 +256,23 @@ st.markdown("""
         to { transform: rotate(360deg); }
     }
     
-    /* Section headers */
+    /* Section headers - Serasa Pink */
     h3 {
         font-size: 1.75rem !important;
         font-weight: 700 !important;
-        color: #003D7A !important;
+        color: #C4006B !important;
         margin-bottom: 2rem !important;
         letter-spacing: -0.02em;
     }
     
-    /* Button animations */
+    /* Button animations - Serasa Pink */
     @keyframes shimmer {
         0% { background-position: -200% center; }
         100% { background-position: 200% center; }
     }
     
     .stButton > button {
-        background: linear-gradient(90deg, #0066CC, #0052A3, #0066CC) !important;
+        background: linear-gradient(90deg, #E6007E, #C4006B, #E6007E) !important;
         background-size: 200% auto !important;
         animation: shimmer 3s linear infinite !important;
         color: white !important;
@@ -281,12 +282,12 @@ st.markdown("""
         font-weight: 600 !important;
         font-size: 1.1rem !important;
         transition: all 0.3s ease !important;
-        box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3) !important;
+        box-shadow: 0 4px 15px rgba(230, 0, 126, 0.3) !important;
     }
     
     .stButton > button:hover {
         transform: translateY(-3px) !important;
-        box-shadow: 0 10px 30px rgba(0, 102, 204, 0.4) !important;
+        box-shadow: 0 10px 30px rgba(230, 0, 126, 0.4) !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -789,7 +790,7 @@ else:
             st.markdown(f"""
             <div class="feature-card" style="height: 100%;">
                 <div class="feature-icon">{icon}</div>
-                <h4 style="color: #0066CC; margin-bottom: 1rem; font-weight: 700; font-size: 1.25rem;">{title}</h4>
+                <h4 style="color: #E6007E; margin-bottom: 1rem; font-weight: 700; font-size: 1.25rem;">{title}</h4>
                 <p style="color: #6C757D; font-size: 1rem; line-height: 1.7;">{desc}</p>
             </div>
             """, unsafe_allow_html=True)
@@ -815,10 +816,10 @@ else:
                 border-radius: 20px;
                 padding: 2rem 1rem;
                 text-align: center;
-                border: 1px solid rgba(0,102,204,0.1);
+                border: 1px solid rgba(230,0,126,0.1);
                 box-shadow: 0 4px 20px rgba(0,0,0,0.05);
                 transition: all 0.3s ease;
-            " onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 20px 40px -15px rgba(0, 102, 204, 0.2)';" 
+            " onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 20px 40px -15px rgba(230, 0, 126, 0.2)';" 
                onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.05)';">
                 <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">{icon}</div>
                 <div class="stat-number">{number}</div>
@@ -845,7 +846,7 @@ else:
             <div class="step-card">
                 <div class="step-number">{num}</div>
                 <div style="font-size: 2.5rem; margin-bottom: 1rem;">{icon}</div>
-                <h5 style="color: #0066CC; margin-bottom: 0.75rem; font-weight: 700; font-size: 1.1rem;">{title}</h5>
+                <h5 style="color: #E6007E; margin-bottom: 0.75rem; font-weight: 700; font-size: 1.1rem;">{title}</h5>
                 <p style="color: #6C757D; font-size: 0.9rem; margin: 0; line-height: 1.6;">{desc}</p>
             </div>
             """, unsafe_allow_html=True)
@@ -861,7 +862,7 @@ else:
     })
     
     fig_preview = go.Figure()
-    colors = ['#00A650' if x > 0 else '#DC3545' for x in preview_data['Variação %']]
+    colors = ['#E6007E' if x > 0 else '#DC3545' for x in preview_data['Variação %']]
     
     fig_preview.add_trace(go.Bar(
         x=preview_data['Dia'],
@@ -898,19 +899,19 @@ else:
     st.markdown("""
     <div class="cta-section">
         <div style="position: relative; z-index: 2;">
-            <h2 style="color: #0066CC; margin-bottom: 1rem; font-weight: 800; font-size: 2rem;">🎯 Pronto para começar?</h2>
+            <h2 style="color: #E6007E; margin-bottom: 1rem; font-weight: 800; font-size: 2rem;">🎯 Pronto para começar?</h2>
             <p style="color: #6C757D; margin-bottom: 2rem; font-size: 1.15rem; max-width: 500px; margin-left: auto; margin-right: auto;">
                 Selecione uma empresa no painel lateral e descubra insights poderosos sobre o mercado financeiro.
             </p>
             <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
                 <div style="display: flex; align-items: center; gap: 0.5rem; color: #6C757D; font-size: 0.9rem;">
-                    <span style="color: #00A650;">✓</span> Gratuito
+                    <span style="color: #E6007E;">✓</span> Gratuito
                 </div>
                 <div style="display: flex; align-items: center; gap: 0.5rem; color: #6C757D; font-size: 0.9rem;">
-                    <span style="color: #00A650;">✓</span> Sem cadastro
+                    <span style="color: #E6007E;">✓</span> Sem cadastro
                 </div>
                 <div style="display: flex; align-items: center; gap: 0.5rem; color: #6C757D; font-size: 0.9rem;">
-                    <span style="color: #00A650;">✓</span> Dados em tempo real
+                    <span style="color: #E6007E;">✓</span> Dados em tempo real
                 </div>
             </div>
             <div style="font-size: 2.5rem; animation: bounce 2s infinite;">👈</div>
