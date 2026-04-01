@@ -613,20 +613,35 @@ def dsa_plot_media_movel(hist: pd.DataFrame, ticker: str):
 def load_stock_data(symbol: str, period: str) -> Optional[pd.DataFrame]:
     """Carrega dados da ação com cache e tratamento de erros"""
     try:
-        data = yf.download(symbol, period=period, progress=False)
-        if data.empty:
-            st.error(f"Nenhum dado encontrado para {symbol}")
+        # Usa Ticker ao inves de download direto
+        ticker = yf.Ticker(symbol)
+        data = ticker.history(period=period)
+        
+        if data is None or data.empty:
+            st.error(f"Nenhum dado encontrado para {symbol}. Verifique se o ticker está correto.")
             return None
+        
+        # Verifica se temos as colunas necessarias
+        required_cols = ['Open', 'High', 'Low', 'Close', 'Volume']
+        for col in required_cols:
+            if col not in data.columns:
+                st.error(f"Coluna {col} não encontrada nos dados de {symbol}")
+                return None
         
         # Limpeza e validação básica
         data = data.dropna()
         if len(data) < 2:
-            st.error(f"Dados insuficientes para {symbol}")
+            st.error(f"Dados insuficientes para {symbol} (apenas {len(data)} registros)")
             return None
-            
+        
+        # Info de debug
+        st.info(f"Carregados {len(data)} registros para {symbol}")
+        
         return data
+        
     except Exception as e:
         st.error(f"Erro ao carregar dados de {symbol}: {str(e)}")
+        st.info("Dica: Tente um período diferente ou verifique sua conexão com a internet.")
         return None
 
 
