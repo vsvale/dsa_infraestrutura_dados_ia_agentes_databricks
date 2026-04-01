@@ -15,7 +15,7 @@ from typing import Optional
 from databricks.sdk import WorkspaceClient
 from databricks.sdk.service.serving import ChatMessage, ChatMessageRole
 
-MODEL_ENDPOINT = "databricks-gemini-3-1-flash-lite"
+MODEL_ENDPOINT = "databricks-meta-llama-3-3-70b-instruct"
 
 @st.cache_resource
 def get_databricks_client() -> Optional[WorkspaceClient]:
