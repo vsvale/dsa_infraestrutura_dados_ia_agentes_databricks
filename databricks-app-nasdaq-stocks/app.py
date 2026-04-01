@@ -39,17 +39,19 @@ st.markdown("""
         font-family: 'Inter', -apple-system, sans-serif;
     }
     
-    /* Hero with animated gradient - Serasa Pink */
+    /* Hero with sand texture background */
     .hero-container {
-        background: linear-gradient(-45deg, #E80070, #C4005C, #D0006F, #FF1A8C);
-        background-size: 400% 400%;
-        animation: gradientShift 8s ease infinite;
-        border-radius: 24px;
-        padding: 5rem 4rem;
-        margin: 1rem 0 3rem 0;
+        background: 
+            linear-gradient(135deg, rgba(232, 0, 112, 0.95) 0%, rgba(196, 0, 92, 0.95) 100%),
+            url('https://ready.so/images/Sand-Texture.webp');
+        background-size: cover, cover;
+        background-position: center, center;
+        background-blend-mode: multiply, normal;
+        border-radius: 16px;
+        padding: 4rem 3rem;
+        margin: 0 0 3rem 0;
         position: relative;
         overflow: hidden;
-        box-shadow: 0 30px 60px -15px rgba(232, 0, 112, 0.4);
     }
     
     @keyframes gradientShift {
