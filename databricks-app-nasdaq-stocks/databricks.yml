@@ -19,4 +19,4 @@ resources:
     nasdaq-stocks-app:
       name: nasdaq-stocks-dashboard
       description: Interactive dashboard for NASDAQ stock analysis
-      source_code_path: src
+      source_code_path: .
