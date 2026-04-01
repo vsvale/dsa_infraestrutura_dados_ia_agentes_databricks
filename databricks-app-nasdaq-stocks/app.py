@@ -98,6 +98,8 @@ div[data-testid="stMetric"] {
   background: var(--surface) !important; border: 1px solid var(--border) !important;
   border-radius: var(--radius) !important; padding: 1.25rem 1.5rem !important;
   box-shadow: var(--shadow-sm) !important;
+  height: 100% !important;
+  min-height: 125px !important;
 }
 div[data-testid="stMetricLabel"] p { color: var(--text-muted) !important; font-size: 0.72rem !important; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600 !important; }
 div[data-testid="stMetricValue"] { color: var(--text) !important; font-weight: 800 !important; font-size: 1.55rem !important; }
