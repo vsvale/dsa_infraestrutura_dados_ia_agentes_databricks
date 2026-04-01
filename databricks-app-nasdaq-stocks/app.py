@@ -28,9 +28,9 @@ st.markdown("""
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
     
     :root {
-        --serasa-pink: #E6007E;
-        --serasa-pink-dark: #C4006B;
-        --serasa-pink-light: #FF1493;
+        --serasa-pink: #E80070;
+        --serasa-pink-dark: #C4005C;
+        --serasa-pink-light: #FF1A8C;
         --serasa-magenta: #D0006F;
         --accent-purple: #6B2D5C;
     }
@@ -41,7 +41,7 @@ st.markdown("""
     
     /* Hero with animated gradient - Serasa Pink */
     .hero-container {
-        background: linear-gradient(-45deg, #E6007E, #C4006B, #D0006F, #FF1493);
+        background: linear-gradient(-45deg, #E80070, #C4005C, #D0006F, #FF1A8C);
         background-size: 400% 400%;
         animation: gradientShift 8s ease infinite;
         border-radius: 24px;
@@ -49,7 +49,7 @@ st.markdown("""
         margin: 1rem 0 3rem 0;
         position: relative;
         overflow: hidden;
-        box-shadow: 0 30px 60px -15px rgba(230, 0, 126, 0.4);
+        box-shadow: 0 30px 60px -15px rgba(232, 0, 112, 0.4);
     }
     
     @keyframes gradientShift {
@@ -121,15 +121,15 @@ st.markdown("""
         left: 0;
         right: 0;
         height: 4px;
-        background: linear-gradient(90deg, #E6007E, #FF1493);
+        background: linear-gradient(90deg, #E80070, #FF1A8C);
         transform: scaleX(0);
         transition: transform 0.5s ease;
     }
     
     .feature-card:hover {
         transform: translateY(-12px) scale(1.02);
-        box-shadow: 0 30px 60px -20px rgba(230, 0, 126, 0.25);
-        border-color: rgba(230,0,126,0.2);
+        box-shadow: 0 30px 60px -20px rgba(232, 0, 112, 0.25);
+        border-color: rgba(232,0,112,0.2);
     }
     
     .feature-card:hover::before {
@@ -140,7 +140,7 @@ st.markdown("""
         font-size: 3.5rem;
         margin-bottom: 1.5rem;
         display: inline-block;
-        filter: drop-shadow(0 4px 10px rgba(230,0,126,0.2));
+        filter: drop-shadow(0 4px 10px rgba(232,0,112,0.2));
     }
     
     /* Glass Trust Badges */
@@ -173,7 +173,7 @@ st.markdown("""
     .stat-number {
         font-size: 3rem;
         font-weight: 800;
-        background: linear-gradient(135deg, #E6007E 0%, #FF1493 100%);
+        background: linear-gradient(135deg, #E80070 0%, #FF1A8C 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
@@ -200,7 +200,7 @@ st.markdown("""
     .step-number {
         width: 60px;
         height: 60px;
-        background: linear-gradient(135deg, #E6007E 0%, #FF1493 100%);
+        background: linear-gradient(135deg, #E80070 0%, #FF1A8C 100%);
         color: white;
         border-radius: 50%;
         display: flex;
@@ -209,7 +209,7 @@ st.markdown("""
         font-weight: 800;
         font-size: 1.5rem;
         margin: 0 auto 1.5rem auto;
-        box-shadow: 0 10px 30px -10px rgba(230, 0, 126, 0.4);
+        box-shadow: 0 10px 30px -10px rgba(232, 0, 112, 0.4);
     }
     
     /* Floating icon animation */
@@ -223,7 +223,7 @@ st.markdown("""
         animation: iconFloat 6s ease-in-out infinite;
         font-size: 7rem;
         opacity: 0.95;
-        filter: drop-shadow(0 10px 30px rgba(230,0,126,0.3));
+        filter: drop-shadow(0 10px 30px rgba(232,0,112,0.3));
         position: relative;
         z-index: 2;
     }
@@ -247,7 +247,7 @@ st.markdown("""
         left: -50%;
         width: 200%;
         height: 200%;
-        background: radial-gradient(circle, rgba(230,0,126,0.03) 0%, transparent 70%);
+        background: radial-gradient(circle, rgba(232,0,112,0.03) 0%, transparent 70%);
         animation: rotate 30s linear infinite;
     }
     
@@ -260,7 +260,7 @@ st.markdown("""
     h3 {
         font-size: 1.75rem !important;
         font-weight: 700 !important;
-        color: #C4006B !important;
+        color: #E80070 !important;
         margin-bottom: 2rem !important;
         letter-spacing: -0.02em;
     }
@@ -272,7 +272,7 @@ st.markdown("""
     }
     
     .stButton > button {
-        background: linear-gradient(90deg, #E6007E, #C4006B, #E6007E) !important;
+        background: linear-gradient(90deg, #E80070, #C4005C, #E80070) !important;
         background-size: 200% auto !important;
         animation: shimmer 3s linear infinite !important;
         color: white !important;
@@ -282,12 +282,12 @@ st.markdown("""
         font-weight: 600 !important;
         font-size: 1.1rem !important;
         transition: all 0.3s ease !important;
-        box-shadow: 0 4px 15px rgba(230, 0, 126, 0.3) !important;
+        box-shadow: 0 4px 15px rgba(232, 0, 112, 0.3) !important;
     }
     
     .stButton > button:hover {
         transform: translateY(-3px) !important;
-        box-shadow: 0 10px 30px rgba(230, 0, 126, 0.4) !important;
+        box-shadow: 0 10px 30px rgba(232, 0, 112, 0.4) !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -790,7 +790,7 @@ else:
             st.markdown(f"""
             <div class="feature-card" style="height: 100%;">
                 <div class="feature-icon">{icon}</div>
-                <h4 style="color: #E6007E; margin-bottom: 1rem; font-weight: 700; font-size: 1.25rem;">{title}</h4>
+                <h4 style="color: #E80070; margin-bottom: 1rem; font-weight: 700; font-size: 1.25rem;">{title}</h4>
                 <p style="color: #6C757D; font-size: 1rem; line-height: 1.7;">{desc}</p>
             </div>
             """, unsafe_allow_html=True)
