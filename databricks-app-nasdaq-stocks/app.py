@@ -897,10 +897,22 @@ else:
     
     # Create animated preview data
     preview_data = pd.DataFrame({
+        'Dia': ['Seg', 'Ter', 'Qua', 'Qui', 'Sex'],
+        'Variacao %': [1.2, -0.5, 2.1, 0.8, 1.5]
+    })
+    
+    fig_preview = go.Figure()
+    colors = ['#E80070' if x > 0 else '#ef4444' for x in preview_data['Variacao %']]
+    
+    fig_preview.add_trace(go.Bar(
+        x=preview_data['Dia'],
+        y=preview_data['Variacao %'],
+        marker=dict(
+            color=colors,
             line=dict(color=colors, width=2),
             opacity=0.8
         ),
-        text=preview_data['Variação %'].apply(lambda x: f'{x:+.1f}%'),
+        text=preview_data['Variacao %'].apply(lambda x: f'{x:+.1f}%'),
         textposition='outside',
         textfont=dict(size=14, color='#333', family='Inter')
     ))
