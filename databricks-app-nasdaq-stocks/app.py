@@ -9,16 +9,16 @@ from datetime import datetime, timedelta
 import time
 from typing import Dict, List, Tuple, Optional
 
-# Configuração da página com identidade visual Serasa Experian
+# Configuração da página com identidade visual
 st.set_page_config(
-    page_title="Serasa Experian - NASDAQ Analytics",
-    page_icon="📊",
+    page_title="NASDAQ Analytics",
+    page_icon="",
     layout="wide",
     initial_sidebar_state="expanded",
     menu_items={
         'Get Help': None,
         'Report a bug': None,
-        'About': "Serasa Experian Analytics Platform v2.0"
+        'About': "NASDAQ Analytics Platform"
     }
 )
 
@@ -698,177 +698,203 @@ if load_data:
             }
         )
         
-        # Insights automáticos
-        st.markdown("### � Insights Inteligentes")
-        
-        insights = []
-        
-        # Análise de tendência
-        short_ma = chart_data['Close'].rolling(window=20).mean().iloc[-1]
-        long_ma = chart_data['Close'].rolling(window=50).mean().iloc[-1]
-        
-        if short_ma > long_ma:
-            insights.append("📈 **Tendência de Alta:** Média de 20 dias acima da média de 50 dias")
-        elif short_ma < long_ma:
-            insights.append("📉 **Tendência de Baixa:** Média de 20 dias abaixo da média de 50 dias")
-        else:
-            insights.append("➡️ **Tendência Neutra:** Médias móveis próximas")
-        
-        # Análise de volatilidade
-        if volatility > 30:
-            insights.append("⚠️ **Alta Volatilidade:** Ativo com grande variação de preços")
-        elif volatility < 15:
-            insights.append("📊 **Baixa Volatilidade:** Ativo estável nos últimos períodos")
-        
-        # Análise de preço
-        if current_price > max_price * 0.95:
-            insights.append("🔺 **Próximo da Máxima:** Preço próximo de máximas recentes")
-        elif current_price < min_price * 1.05:
-            insights.append("🔻 **Próximo da Mínima:** Preço próximo de mínimas recentes")
+    # ===== Insights - Clean =====
+    st.markdown("<h3 style='font-weight: 600; color: #1a1a2e;'>Insights</h3>", unsafe_allow_html=True)
+    
+    insights = []
+    
+    # Analise de tendencia
+    short_ma = chart_data['Close'].rolling(window=20).mean().iloc[-1]
+    long_ma = chart_data['Close'].rolling(window=50).mean().iloc[-1]
+    
+    if short_ma > long_ma:
+        insights.append("**Tendencia de Alta:** Media de 20 dias acima da media de 50 dias")
+    elif short_ma < long_ma:
+        insights.append("**Tendencia de Baixa:** Media de 20 dias abaixo da media de 50 dias")
+    else:
+        insights.append("**Tendencia Neutra:** Medias moveis proximas")
+    
+    # Analise de volatilidade
+    if volatility > 30:
+        insights.append("**Alta Volatilidade:** Ativo com grande variacao de precos")
+    elif volatility < 15:
+        insights.append("**Baixa Volatilidade:** Ativo estavel nos ultimos periodos")
+    
+    # Analise de preco
+    if current_price > max_price * 0.95:
+        insights.append("**Proximo da Maxima:** Preco proximo de maximas recentes")
+    elif current_price < min_price * 1.05:
+        insights.append("**Proximo da Minima:** Preco proximo de minimas recentes")
         
         # Exibir insights
         for insight in insights:
             st.markdown(f"- {insight}")
             
 else:
-    # ===== HERO SECTION - Ultra Modern Landing Page =====
+    # ===== HERO SECTION - Clean & Minimal =====
     st.markdown("""
-    <div class="hero-container">
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 3rem; position: relative; z-index: 2;">
-            <div style="flex: 1; min-width: 320px;">
-                <div style="display: inline-block; background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); padding: 0.5rem 1rem; border-radius: 50px; margin-bottom: 1.5rem; border: 1px solid rgba(255,255,255,0.2);">
-                    <span style="color: white; font-size: 0.875rem; font-weight: 500;">� Powered by Serasa Experian</span>
-                </div>
-                <h1 class="hero-title">Análise Inteligente<br/>de Mercado</h1>
-                <p class="hero-subtitle">
-                    Descubra oportunidades de investimento com dados em tempo real, 
-                    indicadores técnicos avançados e insights impulsionados por IA.
-                </p>
-                <div style="margin-bottom: 2rem;">
-                    <span class="trust-badge">🔒 LGPD Compliant</span>
-                    <span class="trust-badge">⚡ Real-time</span>
-                    <span class="trust-badge">🤖 AI-Powered</span>
-                </div>
-                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                    <div style="text-align: center; padding: 0.75rem 1.5rem; background: rgba(255,255,255,0.1); border-radius: 12px; border: 1px solid rgba(255,255,255,0.2);">
-                        <div style="font-size: 1.5rem; font-weight: 700; color: white;">15+</div>
-                        <div style="font-size: 0.75rem; color: rgba(255,255,255,0.8);">Empresas</div>
-                    </div>
-                    <div style="text-align: center; padding: 0.75rem 1.5rem; background: rgba(255,255,255,0.1); border-radius: 12px; border: 1px solid rgba(255,255,255,0.2);">
-                        <div style="font-size: 1.5rem; font-weight: 700; color: white;">7</div>
-                        <div style="font-size: 0.75rem; color: rgba(255,255,255,0.8);">Períodos</div>
-                    </div>
-                    <div style="text-align: center; padding: 0.75rem 1.5rem; background: rgba(255,255,255,0.1); border-radius: 12px; border: 1px solid rgba(255,255,255,0.2);">
-                        <div style="font-size: 1.5rem; font-weight: 700; color: white;">5+</div>
-                        <div style="font-size: 0.75rem; color: rgba(255,255,255,0.8);">Indicadores</div>
-                    </div>
-                </div>
+    <div style="
+        background: linear-gradient(135deg, #E80070 0%, #C4005C 100%);
+        border-radius: 16px;
+        padding: 4rem 3rem;
+        margin: 0 0 3rem 0;
+    ">
+        <div style="max-width: 600px;">
+            <div style="margin-bottom: 1rem;">
+                <span style="
+                    display: inline-block;
+                    background: rgba(255,255,255,0.15);
+                    padding: 0.5rem 1rem;
+                    border-radius: 50px;
+                    font-size: 0.875rem;
+                    color: white;
+                    font-weight: 500;
+                    border: 1px solid rgba(255,255,255,0.2);
+                    margin-right: 0.5rem;
+                ">Powered by Serasa</span>
+                <span style="
+                    display: inline-block;
+                    background: rgba(255,255,255,0.15);
+                    padding: 0.5rem 1rem;
+                    border-radius: 50px;
+                    font-size: 0.875rem;
+                    color: white;
+                    font-weight: 500;
+                    border: 1px solid rgba(255,255,255,0.2);
+                ">LGPD Compliant</span>
             </div>
-            <div style="flex: 0 0 auto; text-align: center;">
-                <div class="floating-icon" style="font-size: 10rem; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3));">
-                    �
-                </div>
-            </div>
+            <h1 style="
+                font-size: 3rem;
+                font-weight: 700;
+                color: white;
+                margin-bottom: 1rem;
+                line-height: 1.1;
+                letter-spacing: -0.02em;
+            ">Analise Inteligente de Mercado</h1>
+            <p style="
+                font-size: 1.125rem;
+                color: rgba(255,255,255,0.9);
+                margin: 0;
+                max-width: 500px;
+                line-height: 1.6;
+            ">Descubra oportunidades de investimento com dados em tempo real, indicadores tecnicos avancados e insights impulsionados por IA.</p>
         </div>
     </div>
     """, unsafe_allow_html=True)
     
-    # ===== FEATURE SHOWCASE - Modern Bento Grid =====
-    st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("<h3 style='text-align: center; margin-bottom: 3rem;'>✨ Recursos Poderosos</h3>", unsafe_allow_html=True)
+    # ===== FEATURES - Clean Cards =====
+    st.markdown("<h3 style='text-align: center; margin-bottom: 2rem; font-weight: 600; color: #1a1a2e;'>Recursos Poderosos</h3>", unsafe_allow_html=True)
     
     col1, col2, col3 = st.columns(3)
     
     features = [
-        ("⚡", "Dados em Tempo Real", "Acesso instantâneo a dados de mercado via Yahoo Finance API. Atualizações automáticas e precisas."),
-        ("📊", "Análise Técnica Avançada", "RSI, Médias Móveis, Suporte/Resistência, Volatilidade e Bandas de Bollinger em um só lugar."),
-        ("🎯", "Insights por IA", "Algoritmos inteligentes identificam tendências e oportunidades automaticamente para você.")
+        ("Dados em Tempo Real", "Acesso instantaneo a dados de mercado via Yahoo Finance API. Atualizacoes automaticas e precisas."),
+        ("Analise Tecnica Avancada", "RSI, Medias Moveis, Suporte/Resistencia, Volatilidade e Bandas de Bollinger em um so lugar."),
+        ("Insights por IA", "Algoritmos inteligentes identificam tendencias e oportunidades automaticamente para voce.")
     ]
     
-    for col, (icon, title, desc) in zip([col1, col2, col3], features):
+    for col, (title, desc) in zip([col1, col2, col3], features):
         with col:
             st.markdown(f"""
-            <div class="feature-card" style="height: 100%;">
-                <div class="feature-icon">{icon}</div>
-                <h4 style="color: #E80070; margin-bottom: 1rem; font-weight: 700; font-size: 1.25rem;">{title}</h4>
-                <p style="color: #6C757D; font-size: 1rem; line-height: 1.7;">{desc}</p>
+            <div style="
+                background: white;
+                border-radius: 12px;
+                padding: 2rem;
+                border: 1px solid #e5e7eb;
+                height: 100%;
+            ">
+                <div style="color: #E80070; margin-bottom: 0.75rem; font-weight: 600; font-size: 1.125rem;">
+                    {title}
+                </div>
+                <div style="color: #6b7280; font-size: 0.95rem; line-height: 1.6;">
+                    {desc}
+                </div>
             </div>
             """, unsafe_allow_html=True)
     
-    # ===== STATS SECTION - Gradient Cards =====
+    # ===== STATS - Clean Numbers =====
     st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("<h3 style='text-align: center; margin-bottom: 2rem;'>📈 Em Números</h3>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align: center; margin-bottom: 2rem; font-weight: 600; color: #1a1a2e;'>Em Numeros</h3>", unsafe_allow_html=True)
     
     col1, col2, col3, col4 = st.columns(4)
     
     stats_data = [
-        ("15+", "Empresas", "📊"),
-        ("7", "Períodos", "📅"),
-        ("4", "Setores", "🏢"),
-        ("5+", "Indicadores", "📉")
+        ("15+", "Empresas"),
+        ("7", "Periodos"),
+        ("4", "Setores"),
+        ("5+", "Indicadores")
     ]
     
-    for col, (number, label, icon) in zip([col1, col2, col3, col4], stats_data):
+    for col, (number, label) in zip([col1, col2, col3, col4], stats_data):
         with col:
             st.markdown(f"""
             <div style="
-                background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-                border-radius: 20px;
-                padding: 2rem 1rem;
+                background: white;
+                border-radius: 12px;
+                padding: 1.5rem;
                 text-align: center;
-                border: 1px solid rgba(230,0,126,0.1);
-                box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-                transition: all 0.3s ease;
-            " onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 20px 40px -15px rgba(230, 0, 126, 0.2)';" 
-               onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(0,0,0,0.05)';">
-                <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">{icon}</div>
-                <div class="stat-number">{number}</div>
-                <p style="color: #6C757D; font-size: 0.9rem; margin: 0; font-weight: 500;">{label}</p>
+                border: 1px solid #e5e7eb;
+            ">
+                <div style="font-size: 2.5rem; font-weight: 700; color: #E80070; margin-bottom: 0.25rem;">
+                    {number}
+                </div>
+                <div style="color: #6b7280; font-size: 0.875rem; font-weight: 500;">
+                    {label}
+                </div>
             </div>
             """, unsafe_allow_html=True)
     
-    # ===== HOW IT WORKS - Modern Steps =====
+    # ===== HOW IT WORKS - Clean Steps =====
     st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("<h3 style='text-align: center; margin-bottom: 2rem;'>🚀 Como Funciona?</h3>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align: center; margin-bottom: 2rem; font-weight: 600; color: #1a1a2e;'>Como Funciona?</h3>", unsafe_allow_html=True)
     
     col1, col2, col3, col4 = st.columns(4)
     
     steps = [
-        ("1", "🏢", "Escolha", "Selecione o setor econômico"),
-        ("2", "📈", "Configure", "Defina empresa e período"),
-        ("3", "📊", "Analise", "Visualize gráficos e métricas"),
-        ("4", "💡", "Decida", "Tome decisões informadas")
+        ("1", "Escolha", "Selecione o setor economico"),
+        ("2", "Configure", "Defina empresa e periodo"),
+        ("3", "Analise", "Visualize graficos e metricas"),
+        ("4", "Decida", "Tome decisoes informadas")
     ]
     
-    for col, (num, icon, title, desc) in zip([col1, col2, col3, col4], steps):
+    for col, (num, title, desc) in zip([col1, col2, col3, col4], steps):
         with col:
             st.markdown(f"""
-            <div class="step-card">
-                <div class="step-number">{num}</div>
-                <div style="font-size: 2.5rem; margin-bottom: 1rem;">{icon}</div>
-                <h5 style="color: #E6007E; margin-bottom: 0.75rem; font-weight: 700; font-size: 1.1rem;">{title}</h5>
-                <p style="color: #6C757D; font-size: 0.9rem; margin: 0; line-height: 1.6;">{desc}</p>
+            <div style="
+                background: white;
+                border-radius: 12px;
+                padding: 1.5rem;
+                text-align: center;
+                border: 1px solid #e5e7eb;
+            ">
+                <div style="
+                    width: 48px;
+                    height: 48px;
+                    background: #E80070;
+                    color: white;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-weight: 600;
+                    font-size: 1.25rem;
+                    margin: 0 auto 1rem auto;
+                ">{num}</div>
+                <div style="color: #1a1a2e; margin-bottom: 0.5rem; font-weight: 600; font-size: 1rem;">
+                    {title}
+                </div>
+                <div style="color: #6b7280; font-size: 0.875rem; margin: 0;">
+                    {desc}
+                </div>
             </div>
             """, unsafe_allow_html=True)
     
-    # ===== MARKET PREVIEW - Live Demo Chart =====
+    # ===== MARKET PREVIEW - Clean Chart =====
     st.markdown("<br>", unsafe_allow_html=True)
-    st.markdown("<h3 style='text-align: center; margin-bottom: 2rem;'>📈 Preview do Mercado</h3>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align: center; margin-bottom: 2rem; font-weight: 600; color: #1a1a2e;'>Preview do Mercado</h3>", unsafe_allow_html=True)
     
     # Create animated preview data
     preview_data = pd.DataFrame({
-        'Dia': ['Seg', 'Ter', 'Qua', 'Qui', 'Sex'],
-        'Variação %': [1.2, -0.5, 2.1, 0.8, 1.5]
-    })
-    
-    fig_preview = go.Figure()
-    colors = ['#E6007E' if x > 0 else '#DC3545' for x in preview_data['Variação %']]
-    
-    fig_preview.add_trace(go.Bar(
-        x=preview_data['Dia'],
-        y=preview_data['Variação %'],
-        marker=dict(
-            color=colors,
             line=dict(color=colors, width=2),
             opacity=0.8
         ),
@@ -895,81 +921,68 @@ else:
     )
     st.plotly_chart(fig_preview, use_container_width=True)
     
-    # ===== CTA SECTION - Final Call to Action =====
+    # ===== CTA SECTION - Clean =====
     st.markdown("""
-    <div class="cta-section">
-        <div style="position: relative; z-index: 2;">
-            <h2 style="color: #E6007E; margin-bottom: 1rem; font-weight: 800; font-size: 2rem;">🎯 Pronto para começar?</h2>
-            <p style="color: #6C757D; margin-bottom: 2rem; font-size: 1.15rem; max-width: 500px; margin-left: auto; margin-right: auto;">
-                Selecione uma empresa no painel lateral e descubra insights poderosos sobre o mercado financeiro.
-            </p>
-            <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
-                <div style="display: flex; align-items: center; gap: 0.5rem; color: #6C757D; font-size: 0.9rem;">
-                    <span style="color: #E6007E;">✓</span> Gratuito
-                </div>
-                <div style="display: flex; align-items: center; gap: 0.5rem; color: #6C757D; font-size: 0.9rem;">
-                    <span style="color: #E6007E;">✓</span> Sem cadastro
-                </div>
-                <div style="display: flex; align-items: center; gap: 0.5rem; color: #6C757D; font-size: 0.9rem;">
-                    <span style="color: #E6007E;">✓</span> Dados em tempo real
-                </div>
-            </div>
-            <div style="font-size: 2.5rem; animation: bounce 2s infinite;">👈</div>
+    <div style="
+        background: #fafafa;
+        border-radius: 16px;
+        padding: 3rem;
+        text-align: center;
+        margin-top: 3rem;
+        border: 1px dashed #e5e7eb;
+    ">
+        <div style="color: #E80070; margin-bottom: 1rem; font-weight: 700; font-size: 1.75rem;">
+            Pronto para comecar?
         </div>
+        <div style="color: #6b7280; margin-bottom: 2rem; font-size: 1rem; max-width: 500px; margin-left: auto; margin-right: auto;">
+            Selecione uma empresa no painel lateral e descubra insights poderosos sobre o mercado financeiro.
+        </div>
+        <div style="margin-bottom: 1.5rem;">
+            <span style="display: inline-flex; align-items: center; gap: 0.5rem; color: #6b7280; font-size: 0.9rem; margin: 0 0.75rem;">
+                <span style="color: #E80070; font-weight: 700;">✓</span> Gratuito
+            </span>
+            <span style="display: inline-flex; align-items: center; gap: 0.5rem; color: #6b7280; font-size: 0.9rem; margin: 0 0.75rem;">
+                <span style="color: #E80070; font-weight: 700;">✓</span> Sem cadastro
+            </span>
+            <span style="display: inline-flex; align-items: center; gap: 0.5rem; color: #6b7280; font-size: 0.9rem; margin: 0 0.75rem;">
+                <span style="color: #E80070; font-weight: 700;">✓</span> Dados em tempo real
+            </span>
+        </div>
+        <div style="font-size: 1.5rem; color: #E80070; font-weight: 600;">&larr;</div>
     </div>
-    
-    <style>
-        @keyframes bounce {
-            0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(-15px); }
-        }
-    </style>
     """, unsafe_allow_html=True)
 
-# Informações adicionais com estilo Serasa
+# Informacoes adicionais
 st.markdown("---")
-st.markdown("### ℹ️ **Sobre o Serasa Stocks**")
+st.markdown("### Sobre a Plataforma")
 st.markdown("""
-**Plataforma inteligente de análise de ações** desenvolvida com a qualidade e confiança Serasa.
+**Plataforma inteligente de analise de acoes** desenvolvida com a qualidade e confianca Serasa.
 
-**🚀 Funcionalidades Principais:**
-- 📈 **Visualização em tempo real** de preços históricos
-- 📊 **Análise de volume** de negociação
-- 📋 **Estatísticas detalhadas** para tomada de decisão
-- 🔄 **Dados atualizados** diretamente do mercado
-- 🎯 **Interface intuitiva** com design Serasa
+**Funcionalidades Principais:**
+- Visualizacao em tempo real de precos historicos
+- Analise de volume de negociacao
+- Estatisticas detalhadas para tomada de decisao
+- Dados atualizados diretamente do mercado
+- Interface intuitiva com design Serasa
 
-**💡 Como usar:**
-1. **Selecione** uma empresa no painel lateral
-2. **Escolha** o período de análise desejado
-3. **Clique** em "Carregar Dados" para visualizar
-4. **Explore** os gráficos e estatísticas
+**Como usar:**
+1. Selecione uma empresa no painel lateral
+2. Escolha o periodo de analise desejado
+3. Clique em "Carregar Dados" para visualizar
+4. Explore os graficos e estatisticas
 
-**🔒 Segurança e Confiança:**
-Dados obtidos de fontes confiáveis com a qualidade Serasa Experian.
+**Seguranca e Confianca:**
+Dados obtidos de fontes confiaveis com a qualidade Serasa Experian.
 """)
 
-# Footer profissional Serasa Experian
+# Footer clean
 st.markdown("---")
 st.markdown("""
-<div class="footer">
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-        <div>
-            <strong>🚀 Serasa Experian Analytics Platform</strong><br>
-            <small>Análise inteligente de mercado com a confiança Serasa Experian</small>
-        </div>
-        <div style="text-align: right;">
-            <small>Versão 2.0 • LGPD Compliance</small><br>
-            <small>© 2024 Serasa Experian. Todos os direitos reservados.</small>
-        </div>
-    </div>
-    <div style="border-top: 1px solid var(--color-border); padding-top: 1rem; margin-top: 1rem;">
-        <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
-            <span style="color: var(--color-text-secondary);">🔒 Segurança de dados</span>
-            <span style="color: var(--color-text-secondary);">📊 Analytics avançado</span>
-            <span style="color: var(--color-text-secondary);">🌍 LGPD Compliance</span>
-            <span style="color: var(--color-text-secondary);">⚡ Performance otimizada</span>
-        </div>
-    </div>
+<div style="text-align: center; padding: 2rem; color: #6b7280;">
+    <p style="margin: 0; font-size: 0.875rem;">
+        <strong>NASDAQ Analytics Platform</strong> | 
+        <span>LGPD Compliant</span> | 
+        <span>2024 Serasa Experian</span>
+    </p>
 </div>
 """, unsafe_allow_html=True)
