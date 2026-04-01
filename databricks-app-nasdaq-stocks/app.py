@@ -407,9 +407,7 @@ def create_enhanced_chart(data: pd.DataFrame, title: str, y_column: str,
             line=dict(
                 color=plot_color,
                 width=3
-            ),
-            fill='tozeroy',
-            fillcolor=f'{plot_color}33'  # 20% opacity em hex
+            )
         ))
     elif chart_type == "bar":
         fig = go.Figure()
