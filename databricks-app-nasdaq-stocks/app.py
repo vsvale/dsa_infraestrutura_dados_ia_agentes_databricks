@@ -740,45 +740,60 @@ else:
         padding: 4rem 3rem;
         margin: 0 0 3rem 0;
     ">
-        <div style="max-width: 600px;">
-            <div style="margin-bottom: 1rem;">
-                <span style="
-                    display: inline-block;
-                    background: rgba(255,255,255,0.15);
-                    padding: 0.5rem 1rem;
-                    border-radius: 50px;
-                    font-size: 0.875rem;
+        <div style="display: flex; align-items: center; gap: 3rem; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 300px;">
+                <div style="margin-bottom: 1rem;">
+                    <span style="
+                        display: inline-block;
+                        background: rgba(255,255,255,0.15);
+                        padding: 0.5rem 1rem;
+                        border-radius: 50px;
+                        font-size: 0.875rem;
+                        color: white;
+                        font-weight: 500;
+                        border: 1px solid rgba(255,255,255,0.2);
+                        margin-right: 0.5rem;
+                    ">Powered by Serasa</span>
+                    <span style="
+                        display: inline-block;
+                        background: rgba(255,255,255,0.15);
+                        padding: 0.5rem 1rem;
+                        border-radius: 50px;
+                        font-size: 0.875rem;
+                        color: white;
+                        font-weight: 500;
+                        border: 1px solid rgba(255,255,255,0.2);
+                    ">LGPD Compliant</span>
+                </div>
+                <h1 style="
+                    font-size: 3rem;
+                    font-weight: 700;
                     color: white;
-                    font-weight: 500;
-                    border: 1px solid rgba(255,255,255,0.2);
-                    margin-right: 0.5rem;
-                ">Powered by Serasa</span>
-                <span style="
-                    display: inline-block;
-                    background: rgba(255,255,255,0.15);
-                    padding: 0.5rem 1rem;
-                    border-radius: 50px;
-                    font-size: 0.875rem;
-                    color: white;
-                    font-weight: 500;
-                    border: 1px solid rgba(255,255,255,0.2);
-                ">LGPD Compliant</span>
+                    margin-bottom: 1rem;
+                    line-height: 1.1;
+                    letter-spacing: -0.02em;
+                ">Analise Inteligente de Mercado</h1>
+                <p style="
+                    font-size: 1.125rem;
+                    color: rgba(255,255,255,0.9);
+                    margin: 0;
+                    max-width: 500px;
+                    line-height: 1.6;
+                ">Descubra oportunidades de investimento com dados em tempo real, indicadores tecnicos avancados e insights impulsionados por IA.</p>
             </div>
-            <h1 style="
-                font-size: 3rem;
-                font-weight: 700;
-                color: white;
-                margin-bottom: 1rem;
-                line-height: 1.1;
-                letter-spacing: -0.02em;
-            ">Analise Inteligente de Mercado</h1>
-            <p style="
-                font-size: 1.125rem;
-                color: rgba(255,255,255,0.9);
-                margin: 0;
-                max-width: 500px;
-                line-height: 1.6;
-            ">Descubra oportunidades de investimento com dados em tempo real, indicadores tecnicos avancados e insights impulsionados por IA.</p>
+            <div style="flex: 0 0 auto;">
+                <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" width="120" height="120" style="opacity: 0.9;">
+                    <defs>
+                        <style>.a{fill:none;stroke:#ffffff;stroke-linecap:round;stroke-linejoin:round;stroke-width:2;}</style>
+                    </defs>
+                    <path class="a" d="M10.3946,12.46h7.67a1.804,1.804,0,0,1,1.6893,1.9v7.2345a1.804,1.804,0,0,1-1.6893,1.9h-7.67a1.804,1.804,0,0,1-1.6893-1.9V14.36A1.804,1.804,0,0,1,10.3946,12.46Z"></path>
+                    <path class="a" d="M23.575,4.5h5.1714a1.7324,1.7324,0,0,1,1.6894,1.7724v4.9945a1.7324,1.7324,0,0,1-1.6894,1.7724H23.575a1.7324,1.7324,0,0,1-1.6894-1.7724V6.2724A1.7324,1.7324,0,0,1,23.575,4.5Z"></path>
+                    <path class="a" d="M35.0344,9.9423h3.2641a.9962.9962,0,0,1,.9962.9962V14.196a.9953.9953,0,0,1-.9953.9953H35.0353a.9962.9962,0,0,1-.9962-.9962V10.9376A.9953.9953,0,0,1,35.0344,9.9423Z"></path>
+                    <path class="a" d="M20.9389,36.3346h3.7958a1.719,1.719,0,0,1,1.6894,1.7472v3.671A1.7191,1.7191,0,0,1,24.7347,43.5H20.9389A1.719,1.719,0,0,1,19.25,41.7528v-3.671A1.7189,1.7189,0,0,1,20.9389,36.3346Z"></path>
+                    <path class="a" d="M13.0615,27.6128h3.4659a1.3675,1.3675,0,0,1,1.3279,1.404v3.306a1.3675,1.3675,0,0,1-1.3279,1.404H13.0615a1.3675,1.3675,0,0,1-1.3279-1.404v-3.306A1.3675,1.3675,0,0,1,13.0615,27.6128Z"></path>
+                    <path class="a" d="M23.2229,30.7424a3.92,3.92,0,0,0,3.269,1.4507h1.9614a3.224,3.224,0,1,0,0-6.4474H26.3284a3.224,3.224,0,1,1,0-6.4473H28.29a3.529,3.529,0,0,1,3.269,1.4506"></path>
+                </svg>
+            </div>
         </div>
     </div>
     """, unsafe_allow_html=True)
