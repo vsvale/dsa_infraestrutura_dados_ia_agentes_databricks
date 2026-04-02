@@ -61,8 +61,7 @@ st.markdown("""
 
 /* ── Base ── */
 * { box-sizing: border-box; }
-html, body, [class*="css"], [class*="st-"], p, h1, h2, h3, h4, div, span, label { font-family: 'Inter', -apple-system, sans-serif !important; }
-.material-symbols-rounded, .material-symbols-outlined, .material-icons { font-family: 'Material Symbols Rounded', 'Material Icons', sans-serif !important; }
+.stApp, .stApp p, .stApp label, .stApp h1, .stApp h2, .stApp h3, .stApp h4, .stApp li { font-family: 'Inter', -apple-system, sans-serif !important; }
 .stApp { background: var(--surface-dim) !important; color: var(--text) !important; }
 p, label, div, span { color: var(--text); }
 h1,h2,h3,h4 { color: var(--text) !important; letter-spacing: -0.025em; }
@@ -127,8 +126,10 @@ hr { border-color: var(--border) !important; margin: 2rem 0 !important; }
 ::-webkit-scrollbar-thumb:hover { background: var(--pink); }
 
 /* ── AI analysis block ── */
-.ai-block { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2rem 2.25rem; box-shadow: var(--shadow-sm); margin-top: 0.5rem; }
-.ai-block p, .ai-block li, .ai-block strong { color: var(--text) !important; }
+.ai-block { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2rem 2.25rem; box-shadow: var(--shadow-sm); margin-top: 0.5rem; font-size: 1rem; line-height: 1.7; }
+.ai-block p { color: var(--text) !important; margin-bottom: 1.25rem !important; }
+.ai-block li { color: var(--text) !important; margin-bottom: 0.5rem !important; }
+.ai-block strong { color: var(--text) !important; font-weight: 700; }
 
 /* ── Custom HTML table (historical data) ── */
 .data-table-wrap { border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md); border: 1px solid var(--border); background: white; }
