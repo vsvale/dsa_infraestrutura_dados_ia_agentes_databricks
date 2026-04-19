@@ -1,0 +1,40 @@
+# Databricks Apps Configuration
+# Based on Projeto6.ipynb - LangGraph Agent with MLflow Tracing
+
+command: "python app.py"
+
+# Environment variables
+env:
+  # MLflow Configuration
+  - name: MLFLOW_TRACKING_URI
+    value: "databricks"
+  - name: MLFLOW_EXPERIMENT_NAME
+    value: "/databricks-agent-project"
+
+  # Databricks Model Endpoint
+  - name: LLM_ENDPOINT_NAME
+    value: "databricks-meta-llama-3-3-70b-instruct"
+
+  # Unity Catalog Functions
+  - name: UC_TOOL_NAMES
+    value: "system.ai.python_exec"
+
+  # MLflow Tracing
+  - name: MLFLOW_TRACING
+    value: "true"
+  - name: MLFLOW_TRACE_SAMPLING_RATIO
+    value: "1.0"
+
+# Deployment Settings
+deployment:
+  environment: development  # Options: development, staging, production
+  auto_deploy: false
+  notification_on_failure: true
+  notification_emails:
+    - user@example.com
+
+# Monitoring & Logging
+monitoring:
+  enable_mlflow_tracking: true
+  enable_tracing: true
+  log_level: INFO

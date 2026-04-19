@@ -1,0 +1,20 @@
+# Databricks Agent Project Dependencies
+# Databricks Agents and MLflow
+databricks-agents>=0.16.0
+mlflow>=2.20.2
+
+# Databricks LangChain integration
+databricks-langchain
+
+# LangGraph for agent orchestration
+langgraph==0.3.4
+
+# LangChain core dependencies
+langchain-core
+langchain
+
+# Databricks SDK
+databricks-sdk
+
+# Optional: uv for faster dependency management
+# uv

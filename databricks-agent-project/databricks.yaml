@@ -1,0 +1,67 @@
+# Databricks Asset Bundle Configuration
+# This file defines the resources and deployment settings for the Databricks Agent project
+
+bundle:
+  name: databricks-agent-project
+
+# Workspace configuration
+workspace:
+  host: ${DATABRICKS_HOST}
+  # Uncomment if using a specific profile
+  # profile: default
+
+# Resources to deploy
+resources:
+  # Jobs
+  jobs:
+    - name: agent_sync_job
+      display_name: Agent Data Sync Job
+      description: Syncs data for agent knowledge bases
+      schedule:
+        quartz_cron_expression: "0 0 12 * * ?"
+        timezone_id: UTC
+      tasks:
+        - task_key: sync_vector_index
+          description: Sync vector search index
+          pipeline_task:
+            pipeline_id: ${PIPELINE_ID}
+
+  # Pipelines
+  pipelines:
+    - name: agent_data_pipeline
+      display_name: Agent Data Pipeline
+      description: Processes data for agent knowledge bases
+      catalog: catalog
+      schema: schema
+
+# Deployment targets
+targets:
+  development:
+    mode: development
+    workspace:
+      host: ${DATABRICKS_DEV_HOST}
+    resources:
+      jobs:
+        - name: agent_sync_job
+          schedule:
+            quartz_cron_expression: "0 0 * * * ?"  # Hourly in dev
+
+  staging:
+    mode: production
+    workspace:
+      host: ${DATABRICKS_STAGING_HOST}
+    resources:
+      jobs:
+        - name: agent_sync_job
+          schedule:
+            quartz_cron_expression: "0 0 12 * * ?"  # Daily at noon
+
+  production:
+    mode: production
+    workspace:
+      host: ${DATABRICKS_PROD_HOST}
+    resources:
+      jobs:
+        - name: agent_sync_job
+          schedule:
+            quartz_cron_expression: "0 0 12 * * ?"  # Daily at noon
