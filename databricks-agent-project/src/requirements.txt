@@ -7,7 +7,7 @@ mlflow>=2.20.2
 databricks-langchain
 
 # LangGraph for agent orchestration
-langgraph==0.3.4
+langgraph==1.0.10rc1
 
 # LangChain core dependencies
 langchain-core
