@@ -1,12 +1,12 @@
 # Databricks Agent Project
 
-AI Agent application built with LangGraph, Databricks Agents, and MLflow Tracing.
+AI Agent project with LangGraph, Databricks Agents, and MLflow Tracing.
 
 ## Overview
 
-This project demonstrates how to build and deploy AI agents on Databricks using:
+This project demonstrates how to build AI agents on Databricks using:
 - **LangGraph**: Agent orchestration with tool calling
-- **Databricks Agents**: Framework for agent deployment
+- **Databricks Agents**: Framework for agent development
 - **MLflow Tracing**: Observability and debugging
 - **Unity Catalog Functions**: Tool integration
 
@@ -16,9 +16,7 @@ Based on Projeto6.ipynb from Data Science Academy.
 
 ```
 databricks-agent-project/
-├── app.yaml               # Databricks Apps configuration
 ├── databricks.yaml        # Databricks Asset Bundle configuration
-├── app.py                 # Main agent application (LangGraph + MLflow)
 ├── requirements.txt       # Python dependencies
 ├── README.md              # This file
 ├── notebooks/             # Jupyter notebooks for development
@@ -63,10 +61,6 @@ pip install -r requirements.txt
 ```bash
 # Sync files to workspace
 databricks sync . /Workspace/Users/your-email/databricks-agent-project
-
-# Deploy the app
-databricks apps deploy databricks-agent-project \
-  --source-code-path /Workspace/Users/your-email/databricks-agent-project
 ```
 
 ## Agent Architecture
@@ -90,35 +84,9 @@ User Message → Agent Node → Tool Calls?
 
 ## Development
 
-### Running Locally
+### Running in Notebook
 
-```bash
-# Run the app locally with Databricks Connect
-databricks apps run-local --prepare-environment --debug
-
-# Or run directly
-python app.py
-```
-
-### Testing the Agent
-
-```python
-from app import main
-
-agent = main()
-
-# Test predict
-response = agent.predict({
-    "messages": [{"role": "user", "content": "Oi. Testando!"}]
-})
-print(response.messages[-1].content)
-
-# Test streaming
-for chunk in agent.predict_stream({
-    "messages": [{"role": "user", "content": "Explique o que é Tesouro Direto"}]
-}):
-    print(chunk.delta.content, end="")
-```
+Open `notebooks/Projeto6.ipynb` in the Databricks workspace and run the cells to develop and test the agent.
 
 ### MLflow Tracing
 
@@ -129,21 +97,6 @@ Tracing is automatically enabled via:
 View traces in MLflow Experiments under `/databricks-agent-project`.
 
 ## Deployment
-
-### Deploy with Databricks Apps CLI
-
-```bash
-# Create app
-databricks apps create databricks-agent-project
-
-# Deploy from workspace
-databricks apps deploy databricks-agent-project \
-  --source-code-path /Workspace/Users/your-email/databricks-agent-project \
-  --mode AUTO_SYNC
-
-# Get app status
-databricks apps get databricks-agent-project
-```
 
 ### Deploy with Databricks Asset Bundle (DAB)
 
@@ -167,10 +120,6 @@ Navigate to MLflow Experiments in the workspace:
 2. Select `/databricks-agent-project`
 3. View traces for debugging and performance analysis
 
-### App Logs
-
-View logs in the Databricks workspace under Apps > databricks-agent-project > Logs.
-
 ## Troubleshooting
 
 ### Common Issues
@@ -180,22 +129,11 @@ View logs in the Databricks workspace under Apps > databricks-agent-project > Lo
 3. **MLflow Tracing Not Working**: Ensure MLflow experiment exists
 4. **Permission Denied**: Verify service principal has UC function permissions
 
-### Debug Mode
-
-Enable debug logging:
-
-```bash
-export MLFLOW_TRACING=true
-export MLFLOW_TRACE_SAMPLING_RATIO=1.0
-python app.py
-```
-
 ## Resources
 
 - [Databricks Agents Documentation](https://docs.databricks.com/en/generative-ai/agents.html)
 - [LangGraph Documentation](https://langchain-ai.github.io/langgraph/)
 - [MLflow Tracing](https://mlflow.org/docs/latest/tracing/)
-- [Databricks Apps](https://docs.databricks.com/en/dev-tools/databricks-apps/index.html)
 
 ## License
 
