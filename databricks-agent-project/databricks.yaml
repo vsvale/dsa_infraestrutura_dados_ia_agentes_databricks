@@ -7,3 +7,10 @@ bundle:
 # Workspace configuration
 workspace:
   profile: DEFAULT
+
+targets:
+  dev:
+    default: true
+    mode: development
+    workspace:
+      host: https://dbc-285062b2-ce3e.cloud.databricks.com
